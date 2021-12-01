@@ -68,7 +68,7 @@ public class ClientController {
             n = numberAccount();
         }
 
-        Client client = clientService.save(new Client(firstName, lastName, email, passwordEncoder.encode(password), "http://localhost:8080/web/assets/photoUser.png", ClientType.CLIENT));
+        Client client = clientService.save(new Client(firstName, lastName, email, passwordEncoder.encode(password), "https://p16-va-default.akamaized.net/img/musically-maliva-obj/1665282759496710~c5_720x720.jpeg", ClientType.CLIENT));
 
         Account newAccount = new Account(n, LocalDateTime.now(), AccountType.CAJADEAHORRO, 0.00, client);
         accountService.save(newAccount);

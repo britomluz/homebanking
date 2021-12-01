@@ -34,9 +34,9 @@ public class HomebankingApplication {
 									  PayRepository payRepository) {
 		return (args) -> {
 
-			Client melba = new Client("Melba", "Morel", "melba@mindhub.com", passwordEnconder.encode("melba123"), "http://localhost:8080/web/assets/melba.png", ClientType.ADMIN);
-			Client luz = new Client("Luz", "Brito","britomluz@gmail.com", passwordEnconder.encode("luz123"),"http://localhost:8080/web/assets/homebanking3.png", ClientType.CLIENT );
-			//Client admin = new Client("admin", "admin", "admin@mindhub.com", passwordEnconder.encode("admin123"),"http://localhost:8080/web/assets/master1.png");
+			Client melba = new Client("Melba", "Morel", "melba@mindhub.com", passwordEnconder.encode("melba123"), "https://www.marketingdirecto.com/wp-content/uploads/2020/03/dia-de-la-mujer-monica-moro.png", ClientType.ADMIN);
+			Client luz = new Client("Luz", "Brito","britomluz@gmail.com", passwordEnconder.encode("luz123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
+
 
 			Account vin001 = new Account("VIN00000001", LocalDateTime.now().minusMonths(3).plusDays(9), AccountType.CAJADEAHORRO, 5000,melba);
 			Account vin002 = new Account("VIN00000002", LocalDateTime.now().minusMonths(2).minusDays(6).minusHours(3), AccountType.CUENTACORRIENTE, 8500,melba);
