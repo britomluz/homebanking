@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./style/multistep.css">
+    <link rel="stylesheet" href="./style/stylesfinal.css">
+    <link rel="icon" href="./assets/homebanking2.png" type="image/png" />
+    <title>Agendas | MBB Bank</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="container-fluid overflow-hidden">
+            <div class="row vh-100 overflow-auto">
+                <nav class="navbar" id="navbar-account">
+                    <div class="container-account">
+                        <a class="navbar-brand-account" href="#">
+                            <img src="./assets/homebanking2.png" alt="" width="50" height="50">
+                            <span>MBB Bank</span>
+                        </a>
+                    </div>
+                </nav>
+                <div class="col-12 col-sm-3 col-xl-2 px-0 d-flex sticky-top">
+                    <div id="sidebar"
+                        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-4 pt-3">
+                        <div id="sidebar-perfil" class="dropdown py-sm-4 ms-sm-0 flex-shrink-1">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img :src="clients.url" alt="hugenerd" width="30" height="30"
+                                    class="rounded-circle">
+                                <span class="d-none d-sm-inline mx-1" v-cloak >{{clients.firstName}} {{clients.lastName}}</span>
+                            </a>
+                            <small class="d-none d-sm-inline mx-1 fw-lighter" v-cloak >{{clients.email}}</small>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="myprofile.html">Mi perfil</a></li>                                
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" @click="logout">Salir</a></li>
+                            </ul>
+                        </div>
+                        <ul id="menu"
+                            class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start">
+                            <li class="nav-item">
+                                <a href="home.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Inicio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="accounts.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-archive"></i><span
+                                        class="ms-1 d-none d-sm-inline">Mis cuentas</span> </a>
+                            </li> 
+                            <li class="dropdown">
+                                <a href="transfer.html" class="nav-link dropdown-toggle px-sm-0 px-1 active" id="dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fs-5 bi-cash-coin"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transferencias</span>
+                                </a>
+                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                                    <li><a class="dropdown-item" href="schedule.html">Agenda de cuentas</a></li>
+                                    <li><a class="dropdown-item" href="transfer.html">Transferencias</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="loan-application.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-currency-dollar"></i><span
+                                        class="ms-1 d-none d-sm-inline">Préstamos</span></a>
+                            </li>                                                         
+                            <li>
+                                <a href="cards.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-credit-card-2-back-fill"></i><span
+                                        class="ms-1 d-none d-sm-inline">Tarjetas</span> </a>
+                            </li>                            
+                        </ul>
+                        <li v-if="clients.role == 'ADMIN'">
+                            <a id="adminPanl" href="/manager.html" class="nav-link px-sm-0 px-2">
+                                <i class="bi bi-person-lines-fill"></i><span
+                                    class="ms-1 d-none d-sm-inline">Admin Panel</span> </a>
+                        </li>
+                        <li>
+                            <a href="help.html" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-question-circle"></i><span
+                                    class="ms-1 d-none d-sm-inline">Ayuda</span> </a>
+                        </li>
+
+                        <div class="py-4 footerSidebar d-flex flex-column">
+                            <small>__________________________</small>
+                            <small class="pt-3">Copyright © | MBB Bank</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="main-container" class="col d-flex flex-column h-sm-100">
+                    <div>
+                        <div id="header" class="row ">
+                            <div class="d-flex row">
+                                <h1>Agenda de Cuentas</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row overflow-auto h-sm-100">
+                        <main >
+                            <div class="d-flex flex-column align-items-center">
+                                <h2 class="scheduleTitle mt-5 text-center">Gestioná tus contactos de una manera
+                                    <span>mucho más eficiente</span></h2>
+                                <div
+                                    class="contactSchedule row col-12 col-lg-9 mt-5 py-4 d-flex justify-content-around align-items-start">
+                                    <div class="formSchedule col-12 col-lg-5 d-flex flex-column align-items-center">
+                                        <h1 class="text-center">Cuentas agendadas</h1>
+                                        <div class="favSchedule">
+                                            <table class="table table-fav mt-4" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Fav</th>
+                                                        <th scope="col">Nombre y Apellido</th>
+                                                        <th scope="col">Nº de Cuenta</th>
+                                                    </tr>
+                                                </thead>
+                                                <!-- :class="[transaction.type == 'DEBITO' ? 'debit' : 'credit']" -->
+                                                <!-- transactions.slice(0,5) -->
+                                                <tbody v-if="contacts.length > 0">
+                                                    <tr v-for="contact in contacts">
+                                                        <td class="btnFav" v-cloak v-if="contact.type == 'FAV'">
+                                                            <form @submit.prevent="editContact" class="">
+                                                                <button type="submit" :value="contact.accountContact" >
+                                                                    <span><i class="bi bi-star-fill"></i></span>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                        <td class="btnFav" v-cloak v-if="contact.type == 'NOFAV'">
+                                                            
+                                                            <form @submit.prevent="editContact">
+                                                                <button type="submit" :value="contact.accountContact" >
+                                                                    <span><i class="bi bi-star"></i></span>
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                        <td v-cloak>{{contact.nameContact}}</td>
+                                                        <td v-cloak>{{contact.accountContact}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tbody >
+                                                    <tr v-if="contacts.length === 0" v-cloak>
+                                                        <td colspan="3"><a type="submit"><small class="text-danger">No
+                                                                    tienes contactos agendados aún.</small> </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <form @submit.prevent="addContact" class="formSchedule col-12 col-lg-5 d-flex flex-column align-items-center">
+                                        <h1 class="text-center">Agregar contacto a la agenda</h1>
+                                        <div class="mt-4">
+                                            <h4>Numero de cuenta</h4>
+                                            <div class="inputTransfer d-flex justify-content-center w-100">
+                                                <div class="inputGradient d-flex align-items-center w-100 mt-auto">
+                                                    <input v-model="accountContact" type="text" class="form-control"
+                                                        placeholder="Escribir aqui..">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <h4>Nombre y apellido</h4>
+                                            <div class="inputTransfer d-flex justify-content-center w-100">
+                                                <div class="inputGradient d-flex align-items-center w-100 mt-auto">
+                                                    <input v-model="nameContact" type="text" class="form-control"
+                                                        placeholder="Escribir aqui..">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex flex-column align-items-center mt-4">
+                                            <h4 class="text-center">¿Quieres agregar esta cuenta a favoritos?</h4>
+                                            <div class="d-flex">
+                                                <div class="input-groupF transfer schedule ">
+                                                    <input v-model="typeContact" type="radio" name="type" id="fav"
+                                                        value="FAV">
+                                                    <label class="labelType " for="fav"><i
+                                                            class="bi bi-check-lg py-0"></i>Si</label>
+
+                                                </div>
+                                                <div class="input-groupF transfer schedule">
+                                                    <input v-model="typeContact" type="radio" name="type" id="nofav"
+                                                        value="NOFAV">
+                                                    <label class="labelType" for="nofav"><i
+                                                            class="bi bi-x-lg py-0"></i>No</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="viewAccount mt-3">Agregar contacto</button>
+                                        <div v-if="errorContact" class="d-flex justify-content-center pt-4" v-cloak>                                        
+                                            <div class="d-flex align-items-center er" v-cloak>
+                                                <div class="barraError" v-cloak></div>
+                                                <div class="circleError" v-cloak><i class="bi bi-exclamation" v-cloak></i></div>
+                                            </div>
+                                             <small class="text-danger" v-cloak>
+                                                {{error_msgContact}}
+                                             </small>
+                                        </div>
+                                    </form>
+                                   
+
+                                </div>
+                            </div>
+
+                        </main>                        
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script src="./scripts/main.js"></script> -->
+    <script src="./scripts/transfers.js"></script>
+
+
+</body>
+
+</html>

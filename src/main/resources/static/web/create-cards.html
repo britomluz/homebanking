@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./style/multistep.css">
+    <link rel="stylesheet" href="./style/stylesfinal.css">
+    <link rel="icon" href="./assets/homebanking2.png" type="image/png" />
+    <title>Tarjetas | MBB Bank</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="container-fluid overflow-hidden">
+            <div class="row vh-100 overflow-auto">
+                <nav class="navbar" id="navbar-account">
+                    <div class="container-account">
+                        <a class="navbar-brand-account" href="#">
+                            <img src="./assets/homebanking2.png" alt="" width="50" height="50">
+                            <span>MBB</span>
+                        </a>
+                    </div>
+                </nav>
+                <div class="col-12 col-sm-3 col-xl-2 px-0 d-flex sticky-top">
+                    <div id="sidebar"
+                        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-4 pt-3">
+                        <div id="sidebar-perfil" class="dropdown py-sm-4 ms-sm-0 flex-shrink-1">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img :src="clients.url" alt="hugenerd" width="30" height="30"
+                                    class="rounded-circle">
+                                <span class="d-none d-sm-inline mx-1" v-cloak >{{clients.firstName}} {{clients.lastName}}</span>
+                            </a>
+                            <small class="d-none d-sm-inline mx-1 fw-lighter" v-cloak >{{clients.email}}</small>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="myprofile.html">Mi perfil</a></li>                                
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" @click="logout">Salir</a></li>
+                            </ul>
+                        </div>
+                        <ul id="menu"
+                            class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start">
+                            <li class="nav-item">
+                                <a href="home.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Inicio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="accounts.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-archive"></i><span
+                                        class="ms-1 d-none d-sm-inline">Mis cuentas</span> </a>
+                            </li> 
+                            <li class="dropdown">
+                                <a href="transfer.html" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fs-5 bi-cash-coin"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transferencias</span>
+                                </a>
+                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                                    <li><a class="dropdown-item" href="schedule.html">Agenda de cuentas</a></li>
+                                    <li><a class="dropdown-item" href="transfer.html">Transferencias</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="loan-application.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-currency-dollar"></i><span
+                                        class="ms-1 d-none d-sm-inline">Préstamos</span></a>
+                            </li>
+                            <li>
+                                <a href="cards.html" class="nav-link px-sm-0 px-2  active">
+                                    <i class="bi bi-credit-card-2-back-fill"></i><span
+                                        class="ms-1 d-none d-sm-inline">Tarjetas</span> </a>
+                            </li>                            
+                        </ul>
+                        <li v-if="clients.role == 'ADMIN'">
+                            <a id="adminPanl" href="/manager.html" class="nav-link px-sm-0 px-2">
+                                <i class="bi bi-person-lines-fill"></i><span
+                                    class="ms-1 d-none d-sm-inline">Admin Panel</span> </a>
+                        </li>
+                        <li>
+                            <a href="help.html" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-question-circle"></i><span
+                                    class="ms-1 d-none d-sm-inline">Ayuda</span> </a>
+                        </li>
+
+                        <div class="py-4 footerSidebar d-flex flex-column">
+                            <small>__________________________</small>
+                            <small class="pt-3">Copyright © | MBB Bank</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="main-container" class="col d-flex flex-column h-sm-100">
+                    <div>
+                        <div id="header" class="row ">
+                            <div class="d-flex row">
+                                <h1>Tarjetas</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row overflow-auto h-sm-100">
+
+                        <main class="d-flex flex-column align-items-center">
+
+                        </main>
+                        <section class="d-flex justify-content-center">
+                            <div class="row d-flex justify-content-around">
+                                <div class="wantAccount col-12 col-lg-4 py-4 d-flex justify-content-around align-items-center">
+                                    <div class="mt-4 mb-4">
+                                        <div>
+                                            <h2 class="text-center fs-2"> Ahora podes pedir tu tarjeta <span><b>en 3 simples pasos!</b> </span></h2>                                            
+                                            <h4 class="mt-4"><span><i class="bi bi-check-lg fs-5"></i></span> Pedila en menos de 5 minutos </h4>
+                                            <h4><span><i class="bi bi-check-lg fs-5"></i></span> Completa el formulario y disfrutala gratis por un año</h4>
+                                        </div>                                        
+                                    </div>                                        
+                                </div>
+                                <div class="col-12 col-xl-8 d-flex align-items-center justify-content-around">
+                                    <div class="formCard">
+                                        <div class="p-3">     
+                                            <div>
+                                                <!-- Progress bar-->
+                                                <div class="d-flex justify-content-center">
+                                                    <!-- Progress bar-->
+                                                    <div class="progressBar col-lg-5">    
+                                                        <div ref="progress" class="progress" id="progress" :class="progressActive"></div>                                        
+                                                        <div ref="progressStep1" class="progress-step progress-step-active" data-title="Tipo"></div>
+                                                        <div ref="progressStep2" class="progress-step" data-title="Color"></div>
+                                                        <div ref="progressStep3" class="progress-step" data-title="Listo!"></div>                                        
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>                         
+                                         <!-- Steps -->
+                                            <form class="form" @submit.prevent="createCard">
+                                                <div ref="form1" class="form-step form1 form-step-active  d-flex flex-column justify-content-between">
+                                                    <div class="title">
+                                                        <h3>¿Qué tipo de tarjeta quieres solicitar?</h3>
+                                                     </div>
+                                                     
+                                                     <div>
+                                                        <div class="input-groupF" >                                                                                                         
+                                                            <input v-model="type" @click="boolCardDebit" type="radio" name="type" id="debito" value="DEBITO">                                                            
+                                                            <label class="labelType" for="debito"><i class="bi bi-credit-card-fill py-0"></i>Tarjeta de Débito</label>     
+                                                        </div>
+                                                        
+                                                        <div class="input-groupF">
+                                                            <input v-model="type"  @click="boolCardDebit" type="radio" name="type" id="credito" value="CREDITO">                                                        
+                                                            <label class="labelType" for="credito"><i class="bi bi-credit-card-2-back-fill py-0"></i>Tarjeta de Crédito</label>                                                        
+                                                        </div>
+                                                        <div>
+                                                            <a ref="next1" @click="updateForms(this.$refs.next1, this.$refs.form1, this.$refs.form2, this.$refs.progressStep2)" class="btn btn-next w-100">Siguiente  <i class="bi bi-arrow-right "></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ref="form2" class="form-step form2 d-flex flex-column justify-content-between">                                                    
+                                                    <div v-if="numAcc">
+                                                        <div>
+                                                            <h3>¿A qué cuenta quieres asociar tu tarjeta?</h3>
+                                                        </div>                                                    
+                                                        <div >
+                                                            <div class="inputGradientDos d-flex align-items-center pt-1">
+                                                                <select class="w-100"  v-model="numberAccount" name="account">
+                                                                    <option value="">Selecciona una cuenta</option>
+                                                                    <option v-for="acc in accounts" :value="acc.number">
+                                                                        {{acc.number}} </option>
+                                                                </select>
+                                                                <!-- @change="amountPayment()" -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="title mt-3">
+                                                        <h3>¿De qué color quieres tu tarjeta?</h3>
+                                                     </div>
+                                                     <div>
+                                                        <div class="input-groupF color-group" id="color-group">                                                                                                         
+                                                            <input v-model="color" type="radio" name="color" id="silver" value="SILVER">
+                                                            <label class="labelColor" id="silverL" for="silver">SILVER</label>
+                                                        </div>
+                                                        <div class="input-groupF color-group" id="color-group">                                                
+                                                            <input v-model="color" type="radio" name="color" id="gold" value="GOLD">
+                                                            <label class="labelColor" id="goldL" for="gold">GOLD</label>
+                                                        </div>
+                                                        <div class="input-groupF color-group" id="color-group">                                                
+                                                            <input v-model="color" type="radio" name="color" id="titanium" value="TITANIUM">
+                                                            <label class="labelColor" id="titaniumL" for="titanium">TITANIUM</label>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <a ref="back1" @click="backForms(this.$refs.back1, this.$refs.form1, this.$refs.form2, this.$refs.progressStep2)" class="btn btn-prev"><i class="bi bi-arrow-left "></i> Volver</a>
+                                                            <a ref="next2" @click="updateForms(this.$refs.next2, this.$refs.form2, this.$refs.form3, this.$refs.progressStep3)" class="btn btn-next">Siguiente <i class="bi bi-arrow-right"></i></a>                                                
+                                                        </div>   
+                                                    </div>                                     
+                                                </div>
+                                                <div ref="form3" class="form-step form3 d-flex flex-column justify-content-between align-items-between">
+                                                    <div class="title">
+                                                        <h3>¡Confirma tu solicitud!</h3>
+                                                    </div>
+                                                    <div class="mt-4 pt-5">
+                                                        <h4>Tu solicitud es: </h4>
+                                                        <p v-if="type!=''">Tipo de tarjeta: <b>{{type}}</b></p>
+                                                        <p v-else> Tipo de tarjeta: <span>Elige un un tipo de tarjeta</span></p>
+                                                        <p v-if="color!=''">Color de tarjeta: <b>{{color}}</b></p>
+                                                        <p v-else> Color de tarjeta: <span>Elige un color de tarjeta</span></p>
+                                                        
+                                                    </div>
+                                                    <div class="mt-5 pt-5">                                            
+                                                        <h4>¿Quieres confirmar tu pedido?</h4>
+                                                        <div class="btn-group">                                                
+                                                            <a ref="back2" @click="backForms(this.$refs.back2, this.$refs.form2, this.$refs.form3, this.$refs.progressStep3)" class="btn btn-prev"><i class="bi bi-arrow-left"></i> Volver</a>
+                                                            <button ref="submit" type="submit" value="submit" @click="nextProgressBar(this.$refs.submit, this.$refs.progressStep3)" class="btn btn-confirm">Confirmar </button>                                                        
+                                                        </div>                                        
+                                                        
+                                                    </div>
+        
+                                                    <div v-if="errorCards" id="advertencia" class="d-flex justify-content-center align-items-center pt-4" v-cloak>                                        
+                                                        <div class="d-flex align-items-center er">
+                                                            <div class="barraError"></div>
+                                                            <div class="circleError"><i class="bi bi-exclamation"></i></div>
+                                                        </div>
+                                                         <small class="text-danger">{{error_newCard}}</small>
+                                                     </div>                                             
+                                                </div>
+                                            </form>                    
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            
+                                
+                        </section>                        
+                    </div>
+
+                   
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./scripts/main.js"></script>
+</body>
+
+</html>

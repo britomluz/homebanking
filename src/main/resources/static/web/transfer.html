@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./style/multistep.css">
+    <link rel="stylesheet" href="./style/stylesfinal.css">
+    <link rel="icon" href="./assets/homebanking2.png" type="image/png" />
+    <title>Transferencias | MBB Bank</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="container-fluid overflow-hidden">
+            <div class="row vh-100 overflow-auto">
+                <nav class="navbar" id="navbar-account">
+                    <div class="container-account">
+                        <a class="navbar-brand-account" href="#">
+                            <img src="./assets/homebanking2.png" alt="" width="50" height="50">
+                            <span>MBB Bank</span>
+                        </a>
+                    </div>
+                </nav>
+                <div class="col-12 col-sm-3 col-xl-2 px-0 d-flex sticky-top" v-cloak>
+                    <div id="sidebar"
+                        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-4 pt-3" >
+                        <div id="sidebar-perfil" class="dropdown py-sm-4 ms-sm-0 flex-shrink-1">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img :src="clients.url" alt="hugenerd" width="30" height="30"
+                                    class="rounded-circle">
+                                <span class="d-none d-sm-inline mx-1">{{clients.firstName}} {{clients.lastName}}</span>
+                            </a>
+                            <small class="d-none d-sm-inline mx-1 fw-lighter">{{clients.email}}</small>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="myprofile.html">Mi perfil</a></li>                                
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" @click="logout">Salir</a></li>
+                            </ul>
+                        </div>
+                        <ul id="menu"
+                            class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start">
+                            <li class="nav-item">
+                                <a href="home.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Inicio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="accounts.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-archive"></i><span
+                                        class="ms-1 d-none d-sm-inline">Mis cuentas</span> </a>
+                            </li> 
+                            <li class="dropdown">
+                                <a href="transfer.html" class="nav-link dropdown-toggle px-sm-0 px-1  active" id="dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fs-5 bi-cash-coin"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transferencias</span>
+                                </a>
+                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                                    <li><a class="dropdown-item" href="schedule.html">Agenda de cuentas</a></li>
+                                    <li><a class="dropdown-item" href="transfer.html">Transferencias</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="loan-application.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-currency-dollar"></i><span
+                                        class="ms-1 d-none d-sm-inline">Préstamos</span></a>
+                            </li>                                                         
+                            <li>
+                                <a href="cards.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-credit-card-2-back-fill"></i><span
+                                        class="ms-1 d-none d-sm-inline">Tarjetas</span> </a>
+                            </li>                            
+                        </ul>
+                        <li v-if="clients.role == 'ADMIN'">
+                            <a id="adminPanl" href="/manager.html" class="nav-link px-sm-0 px-2">
+                                <i class="bi bi-person-lines-fill"></i><span
+                                    class="ms-1 d-none d-sm-inline">Admin Panel</span> </a>
+                        </li>
+                        <li>
+                            <a href="help.html" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-question-circle"></i><span
+                                    class="ms-1 d-none d-sm-inline">Ayuda</span> </a>
+                        </li>
+
+                        <div class="py-4 footerSidebar d-flex flex-column">
+                            <small>__________________________</small>
+                            <small class="pt-3">Copyright © | MBB Bank</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="main-container" class="col d-flex flex-column h-sm-100">
+                    <div>
+                        <div id="header" class="row">
+                            <div class="d-flex row">
+                                <h1>Inicio</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row overflow-auto h-sm-100">
+                        <main class="d-flex justify-content-center">
+                            <div class="row d-flex justify-content-around">
+                                <div class="wantAccount col-12 col-lg-4 py-4 d-flex justify-content-around align-items-center">
+                                    <div class="mt-4 mb-4">
+                                        <div>
+                                            <h2 class="text-center fs-2"> Envia y recibe dinero de una manera <span><b>más eficiente y segura!</b> </span></h2>                                            
+                                            <h4 class="mt-4"><span><i class="bi bi-check-lg fs-5"></i></span> Acreditaciones en el acto </h4>
+                                            <!-- <h4><span><i class="bi bi-check-lg fs-5"></i></span> Completa el formulario y disfrutala gratis por un año</h4> -->
+                                        </div>                                        
+                                    </div>                                        
+                                </div>
+                                <div class="col-12 col-xl-8 d-flex align-items-center justify-content-around">
+                                    <div class="formCard">
+                                        <div class="p-3">
+                                            <div class="form-header">
+                                            </div>
+                                            <!-- Progress bar-->
+                                            <div class="d-flex justify-content-center">
+                                                <div class="progressBar col-12 col-lg-5">
+                                                    <div ref="progress" class="progress" id="progress" :class="progressActive">
+                                                    </div>
+                                                    <div ref="progressStep1" class="progress-step progress-step-active"
+                                                        data-title="Tipo"></div>
+                                                    <div ref="progressStep2" class="progress-step" data-title="Color"></div>
+                                                    <div ref="progressStep3" class="progress-step" data-title="Listo!"></div>
+                                                </div>
+                                            </div>
+                                            <!-- Form Steps -->
+                                            <form class="form" @submit.prevent="createTransactions">
+                                                <!-- Step 1 -->
+                                                <div ref="form1" class="form-step form1 form-step-active">
+                                                    <div class="title mt-5 ">
+                                                        <h3 class="text-center">¿Desde qué cuenta quieres transferir?</h3>
+                                                    </div>
+                                                    <div>
+                                                        <div class="inputGradientDos d-flex align-items-center pt-3">
+                                                            <select class="w-100" v-model="originNumberAccount" name="cuentas"
+                                                                id="" placeholder="">
+                                                                <option value="" selected>Selecciona una cuenta</option>
+                                                                <option v-for="acc in accountByDefault" :value="acc.number">
+                                                                    {{acc.number}} - ${{(acc.balance).toFixed(2)}} </option>
+                                                                <option v-for="acc in accountsTransfer" :value="acc.number">
+                                                                    {{acc.number}} - ${{(acc.balance).toFixed(2)}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="title mt-4 ">
+                                                        <h3 class="text-center">¿A qué cuenta quieres transferir?</h3>                                                        
+                                                        <div class="d-flex">
+                                                            <div class="input-groupF transfer">
+                                                                <input v-model="showSelectAccounts" type="radio" name="account"
+                                                                    id="own" value="ownAccount">
+                                                                <label class="labelType" for="own"><i
+                                                                        class="bi bi-person-fill py-0"></i>Cuenta Propia</label>
+        
+                                                            </div>
+                                                            <div class="input-groupF transfer">
+                                                                <input v-model="showSelectAccounts" type="radio" name="account"
+                                                                    id="others" value="othersAccount">
+                                                                <label class="labelType" for="others"><i
+                                                                        class="bi bi-people-fill py-0"></i>Cuenta de
+                                                                    Terceros</label>
+                                                            </div>
+                                                        </div>
+                                                        <div v-if="showSelectAccounts == 'ownAccount'" v-cloak>
+                                                            <div class="inputGradientDos d-flex align-items-center pt-3">
+                                                                <select class="w-100" v-model="destinyNumberAccount"
+                                                                    name="cuentas" id="">
+                                                                    <option value="">Selecciona una cuenta</option>
+                                                                    <option v-for="acc in myAccounts" :value="acc.number">
+                                                                        {{acc.number}} - ${{(acc.balance).toFixed(2)}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div v-if="showSelectAccounts == 'othersAccount'" v-cloak>
+                                                            <div class="inputGradientDos d-flex align-items-center pt-3">
+                                                                <select class="w-100" v-model="destinyNumberAccount"
+                                                                    name="cuentas" id="">
+                                                                    <option value="" >Selecciona una cuenta de tu agenda</option>
+                                                                    <option v-for="acc in contacts" :value="acc.accountContact">
+                                                                        {{acc.nameContact}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div v-if="showSelectAccounts == 'othersAccount'" v-cloak>
+                                                            <div class="inputTransfer mt-4 d-flex justify-content-center w-100">
+                                                                <div class="inputGradient d-flex align-items-center w-100 mt-auto">
+                                                                    <input v-model="destinyNumberAccount" type="text"
+                                                                        class="form-control" id="destinationAccount"
+                                                                        placeholder="Ingresa una cuenta de destino">
+                                                                </div>                                                        
+                                                            </div>                                                    
+                                                        </div>                                                
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <a ref="next1"
+                                                            @click="updateForms(this.$refs.next1, this.$refs.form1, this.$refs.form2, this.$refs.progressStep2)"
+                                                            class="btn btn-next w-100">Siguiente <i class="bi bi-arrow-right "></i></a>
+                                                    </div>
+                                                </div>
+                                                <!-- Step 2 -->
+                                                <div ref="form2" class="form-step form2">
+                                                    <div class="title  mt-5">
+                                                        <h3 class="text-center">Completa los datos</h3>
+                                                    </div>                                            
+                                                    <div class="title mt-3 pt-4">
+                                                        <h4>Monto:</h4>
+                                                        <div class="input ">
+                                                            <div class="inputGradient d-flex align-items-center">
+                                                                <input v-model="amount" type="number" class="form-control"
+                                                                    id="amount" aria-describedby="emailHelp"
+                                                                    placeholder="Ingresa el monto a transferir">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="title  mt-4  pt-2">
+                                                        <h4>Descripción:</h4>
+                                                        <div class="input ">
+                                                            <div class="inputGradient d-flex align-items-center">
+                                                                <input v-model="description" type="text" class="form-control"
+                                                                    id="description" aria-describedby="emailHelp"
+                                                                    placeholder="Ingresa la descripción">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn-group mt-5 pt-5">
+                                                        <a ref="back1"
+                                                            @click="backForms(this.$refs.back1, this.$refs.form1, this.$refs.form2, this.$refs.progressStep2)"
+                                                            class="btn btn-prev"><i class="bi bi-arrow-left "></i>Volver</a>
+                                                        <a ref="next2"
+                                                            @click="updateForms(this.$refs.next2, this.$refs.form2, this.$refs.form3, this.$refs.progressStep3)"
+                                                            class="btn btn-next">Siguiente <i class="bi bi-arrow-right"></i></a>
+                                                    </div>
+                                                </div>
+                                                <!-- Step 3 -->
+                                                <div ref="form3" class="form-step form3 ">
+                                                    <div class="title  mt-5">
+                                                        <h3 class="text-center">Detalles de transferencia</h3>
+                                                    </div>
+                                                    <div class="pt-5">
+                                                        <p v-if="originNumberAccount != ''">Cuenta a debitar:
+                                                            <b>{{originNumberAccount}}</b>
+                                                        </p>
+                                                        <p v-else> Cuenta a debitar: <span>Indica una cuenta</span>
+                                                        </p>
+                                                        <p v-if="destinyNumberAccount != ''">Cuenta de destino:
+                                                            <b>{{destinyNumberAccount}}</b>
+                                                        </p>
+                                                        <p v-else> Cuenta de destino: <span>Indica la cuenta de destino</span></p>
+                                                        <p v-if="amount != ''">Monto: <b>${{amount}}</b></p>
+                                                        <p v-else> Monto: <span>Indica el monto a transferir</span></p>
+                                                        <p v-if="description != ''">Descripción: <b>{{description}}</b></p>
+                                                        <p v-else> Descripción: <span>Indica la Descripción</span></p>
+        
+                                                    </div>
+                                                    <div class=" mt-5 pt-5">
+                                                        <h4 class="text-center">¿Quieres confirmar la transacción?</h4>
+                                                        <div class="btn-group ">
+                                                            <a ref="back2"
+                                                                @click="backForms(this.$refs.back2, this.$refs.form2, this.$refs.form3, this.$refs.progressStep3)"
+                                                                class="btn btn-prev"><i class="bi bi-arrow-left"></i> Volver</a>
+                                                            <button ref="submit" type="submit" value="submit"                                                       
+                                                                class="btn btn-confirm" :disabled="btnDisabled">Confirmar <i
+                                                                    class="bi bi-check-lg"></i></button>
+                                                                <!-- <p> @click="nextProgressBar(this.$refs.submit, this.$refs.progressStep3)"</p> NO SE QUE FUNCION CUMPLE-->
+                                                        </div>
+                                                    </div>
+                                                    <div v-if="errorTransfer" id="advertencia"
+                                                        class="d-flex justify-content-center align-items-center  pt-4" v-cloak>
+                                                        <div class="d-flex align-items-center er">
+                                                            <div class="barraError"></div>
+                                                            <div class="circleError"><i class="bi bi-exclamation"></i></div>
+                                                        </div>                                                
+                                                        <small class="text-danger">{{error_newTransfer}}</small>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script src="./scripts/main.js"></script> -->
+    <script src="./scripts/transfers.js"></script>
+
+
+</body>
+
+</html>

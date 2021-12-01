@@ -1,0 +1,252 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+:root{
+    --main-color-primary1: #9e005d!important;
+    --main-color-primary2: #ffe9c7!important;
+    --main-color-primary4: #12c2b0!important;
+    --main-color-primary3: #ffaf34!important;
+    --main-color-secondary1: #68003c!important;
+    --main-color-secondary2: rgb(209, 209, 209);
+    --main-color-secondary3: rgb(243, 238, 233);    
+
+    --Titanium1: #ff22a6!important;
+    --Titanium2: #66003b!important;
+    --Titanium3: #9e005d!important;
+    --Titanium4: #e02696!important;
+    --Titanium5: #ff0099!important;
+    
+
+    --Oro1: rgba(250,242,144)!important;
+    --Oro2: rgba(200,150,41)!important;    
+    --Oro3: rgba(96,53,18)!important;
+        
+    --Silver1: #f6f9fc!important;
+    --Silver2: rgba(175, 175, 175)!important;
+    --Silver3: rgba(63, 63, 63)!important;
+    
+}
+
+.flip-container{
+    /* position: absolute;    */
+    perspective: 1200;
+    /* overflow: hidden; */
+    display: inline-block;
+    width: 100%;
+}
+
+.flipCard{
+    transform: rotateY(180deg);
+}
+
+.card{
+    width: 320px;    
+    min-height: 200px;
+    transition: all 1s ease-in-out;
+    transform-style: preserve-3d;
+    border-radius: 10px;
+    cursor: pointer;    
+    background: white;
+    position: relative;
+    margin: 30px;    
+    /* overflow: hidden;   */    
+}
+
+.front, .back{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;  
+    border-radius: 10px;
+    z-index: 1;    
+}
+
+.front{   
+    background: linear-gradient(-135deg, var(--Silver3), var(--Silver2), var(--Silver1), var(--Silver2), var(--Silver3));    
+    box-shadow: -5px 5px 10px rgb(212, 203, 195);        
+}
+
+.back{   
+    background: linear-gradient(-135deg, var(--Oro3), var(--Oro2), var(--Oro1), var(--Oro2), var(--Oro3));    
+    transform: rotateY(-180deg);       
+}
+.card-head p{
+    color: white;
+    font-size: 13px;
+}
+.card-number{
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px rgb(83, 83, 83);
+    font-family: monospace;
+    letter-spacing: 3px;
+    font-size: 20px;    
+}
+.valido{
+    font-size: 6px;
+    line-height: 6px;
+    font-family: monospace;
+    margin-top: -5px;
+}
+#validCard{
+    margin-bottom: 0rem!important;
+}
+.chip img:nth-child(1){
+    box-shadow: 2px 2px 5px var(--Oro2);
+    margin-right: 15px;
+}
+.card-bottom h4{
+    color: white;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgb(83, 83, 83);
+    font-size: 15px;
+}
+
+.card-bottom span{
+    color: white;
+    text-shadow: 2px 2px 4px rgb(83, 83, 83);
+    font-family: monospace
+}
+ 
+.card-type p{
+    line-height: 2px;
+    text-align: right; 
+    font-weight: 600;   
+}
+.card-type p:nth-child(2){
+    opacity: .7;
+    font-weight: normal;
+}
+.img-fondo{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .2;
+    z-index: -1;
+}
+.img-expired{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: .5;
+        background: rgb(179, 166, 166);        
+}
+.frontSilver{   
+    background: linear-gradient(-135deg, var(--Silver3), var(--Silver2), var(--Silver1), var(--Silver2), var(--Silver3));    
+    box-shadow: -5px 5px 10px rgb(212, 203, 195);      
+}
+
+.frontGold{   
+    background: linear-gradient(-135deg, var(--Oro3), var(--Oro2), var(--Oro1), var(--Oro2), var(--Oro3));    
+    box-shadow: -5px 5px 10px rgb(212, 203, 195);            
+}
+
+.frontTitanium{   
+    background: linear-gradient(-135deg, var(--Titanium2), var(--Titanium3), var(--Titanium1), var(--Titanium3), var(--Titanium2));    
+    box-shadow: -5px 5px 10px rgb(212, 203, 195);     
+    
+}
+
+/*CARD BACK*/
+
+.black-line{    
+    background: #222;
+    width: 100%;
+    height: 35px;
+    margin-top: 25px;
+}
+.card-cvv{
+    margin-top: 10px;
+
+}
+.card-cvv div{ 
+    flex: 1;
+}
+.card-cvv img{
+    width: 75%;
+    display: inline-block;
+    line-height: 0;
+    
+}
+.card-cvv p{
+    display: inline-block;    
+    background: white;
+    font-size: 15px;
+    padding: 5px 20px;
+}
+.card-text p{
+    font-size: 10px;
+    color: white;
+    line-height: 10px;
+    font-weight: normal;
+    padding: 10px 20px;
+    margin-bottom: 0;
+}
+.card-logos img{
+    margin-top: 5px;
+}
+.credit-mindhub{
+    background: white;
+    border-radius: 10px;
+}
+.wantCard{
+    width: 90%;
+    height: 100%;
+    padding-top: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: -5px 5px 10px rgb(212, 203, 195); 
+}
+.wantCard span{
+    color: var(--main-color-primary4);
+    font-size: 2rem;
+}
+.wantCard h3{
+    font-size: 1.5rem;
+}
+.cards-title{
+    display: inline-block;
+    background: linear-gradient(to top right, #d1037b, var(--main-color-primary4));
+    
+    padding: 20px 3rem;
+    border-radius: 0 35px 35px 0;
+    color: white;
+}
+.cards-title2{
+    display: inline-block;
+    background: linear-gradient(to top left, #d1037b, var(--main-color-primary4));
+    padding: 20px 3rem;
+    border-radius: 35px 0 0 35px;
+    color: white;
+}
+
+/* select cards*/
+.inputGradientDos select{
+    background: linear-gradient(to top right, #d1037b, var(--main-color-primary4));
+    width: 90%; 
+    border-radius: 25px;
+    padding: 10px 20px;
+    outline: 0; 
+    border: none;
+    box-shadow: none!important;  
+    color: white;
+    font-size: 18px; 
+    /* appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none; */
+  }
+  .inputGradientDos option{
+    color: var(--main-color-secondary1);    
+  }
+.deleteCard{
+    width: 300px;
+}

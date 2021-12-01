@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./style/stylesfinal.css">
+    <link rel="icon" href="./assets/homebanking2.png" type="image/png" />
+    <title>Mi perfil | MBB Bank</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="container-fluid overflow-hidden">
+            <div class="row vh-100 overflow-auto">
+                <nav class="navbar" id="navbar-account">
+                    <div class="container-account">
+                        <a class="navbar-brand-account" href="#">
+                            <img src="./assets/homebanking2.png" alt="" width="50" height="50">
+                            <span>MBB Bank</span>
+                        </a>
+                    </div>
+                </nav>
+                <div class="col-12 col-sm-3 col-xl-2 px-0 d-flex sticky-top">
+                    <div id="sidebar"
+                        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-4 pt-3">
+                        <div id="sidebar-perfil" class="dropdown py-sm-4 ms-sm-0 flex-shrink-1">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img :src="clients.url" alt="hugenerd" width="30" height="30"
+                                    class="rounded-circle">
+                                <span class="d-none d-sm-inline mx-1" v-cloak >{{clients.firstName}} {{clients.lastName}}</span>
+                            </a>
+                            <small class="d-none d-sm-inline mx-1 fw-lighter" v-cloak >{{clients.email}}</small>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="myprofile.html">Mi perfil</a></li>                                
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" @click="logout">Salir</a></li>
+                            </ul>
+                        </div>
+                        <ul id="menu"
+                            class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start">
+                            <li class="nav-item">
+                                <a href="home.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Inicio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="accounts.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-archive"></i><span
+                                        class="ms-1 d-none d-sm-inline">Mis cuentas</span> </a>
+                            </li> 
+                            <li class="dropdown">
+                                <a href="transfer.html" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fs-5 bi-cash-coin"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transferencias</span>
+                                </a>
+                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                                    <li><a class="dropdown-item" href="schedule.html">Agenda de cuentas</a></li>
+                                    <li><a class="dropdown-item" href="transfer.html">Transferencias</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="loan-application.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-currency-dollar"></i><span
+                                        class="ms-1 d-none d-sm-inline">Préstamos</span></a>
+                            </li>    
+                            <li>
+                                <a href="cards.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-credit-card-2-back-fill"></i><span
+                                        class="ms-1 d-none d-sm-inline">Tarjetas</span> </a>
+                            </li>                            
+                        </ul>
+                        <li v-if="clients.role == 'ADMIN'">
+                            <a id="adminPanl" href="/manager.html" class="nav-link px-sm-0 px-2">
+                                <i class="bi bi-person-lines-fill"></i><span
+                                    class="ms-1 d-none d-sm-inline">Admin Panel</span> </a>
+                        </li>
+                        <li>
+                            <a href="help.html" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-question-circle"></i><span
+                                    class="ms-1 d-none d-sm-inline">Ayuda</span> </a>
+                        </li>
+
+                        <div class="py-4 footerSidebar d-flex flex-column">
+                            <small>__________________________</small>
+                            <small class="pt-3">Copyright © | MBB Bank</small>
+                        </div>
+                    </div>
+                </div>
+                <div id="main-container" class="col d-flex flex-column h-sm-100">
+                    <div>
+                        <div id="header" class="row ">
+                            <div class="d-flex row">
+                                <h1>Mi perfil</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row overflow-auto h-sm-100">
+                        <main>
+                            <div class="px-5">
+                                <h2 v-cloak class="py-5 text-center">Datos personales</h2>
+                                <div class="d-flex flex-wrap  justify-content-center align-items-center">
+
+                                    <div class="col-sm-6">
+
+                                        <div class="card ">
+                                            <div class="card-body d-flex flex-column align-items-center">                                                
+                                                <div class="d-flex flex-column justify-content-center align-items-center btn-profile">
+                                                    
+                                                    <div class="containerImg">
+                                                        <div class="cardImg">
+                                                            <img :src="clients.url" id="img-preview" ref="imagePreviewDos">
+                                                            <div class="cardImg-footer">
+                                                                <label for="img-uploader2" id="label-profile2"><i
+                                                                    class="bi bi-image-fill fs-1 px-0 py-0"></i></label>
+                                                                <input type="file" @change="uploadImageCloud($event)" id="img-uploader2" ref="imageUploaderDos">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <form @submit.prevent="editPhoto">
+                                                        <button type="submit" value="editPhoto"><i class="bi bi-check-square fs-4"></i></button>                                                       
+                                                    </form>
+                                                </div>
+
+                                               
+
+                                                <div>
+                                                    <p v-cloak> <b><i class="bi bi-person-fill fs-4 py-1"></i>Nombre:
+                                                        </b> {{clients.firstName}}</p>
+                                                    <p v-cloak> <b> <i
+                                                                class="bi bi-person-plus-fill fs-4 py-1"></i>Apellido:
+                                                        </b> {{clients.lastName}}</p>
+                                                    <p v-cloak> <b><i class="bi bi-envelope-fill fs-4 py-1"></i>Correo
+                                                            electrónico: </b> {{clients.email}}
+                                                        <button class="fs-6 btn btn-link text-decoration-none px-3"
+                                                            type="submit" :id="clients.id" @click="showBtnEdit">
+                                                            <small><i
+                                                                    class="bi bi-pencil fs-5 text-primary"></i>Editar</small>
+                                                        </button>
+                                                    </p>
+                                                    <div v-if="btnEdit">
+                                                        <input type="email" v-model="newEmail" class="clientsmail"
+                                                            :id="clients.email" placeholder="Escribe el nuevo email"
+                                                            required>
+                                                        <button type="submit" @click="editClient()"
+                                                            class="viewAccount">Guardar</button>
+                                                    </div>
+
+                                                </div>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </main>
+                    </div>
+                   
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./scripts/main.js"></script>
+    <!-- <script src="./scripts/prueba.js"></script> -->
+</body>
+
+</html>

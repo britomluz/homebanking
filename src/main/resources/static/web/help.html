@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./style/stylesfinal.css">
+    <link rel="stylesheet" href="./style/chat.css">
+    <link rel="icon" href="./assets/homebanking2.png" type="image/png" />
+    <title>Ayuda</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="container-fluid overflow-hidden">
+            <div class="row vh-100 overflow-auto">
+                <nav class="navbar" id="navbar-account">
+                    <div class="container-account">
+                        <a class="navbar-brand-account" href="#">
+                            <img src="./assets/homebanking2.png" alt="" width="50" height="50">
+                            <span>Ayuda | MBB Bank</span>
+                        </a>
+                    </div>
+                </nav>
+                <div class="col-12 col-sm-3 col-xl-2 px-0 d-flex sticky-top">
+                    <div id="sidebar"
+                        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-4 pt-3">
+                        <div id="sidebar-perfil" class="dropdown py-sm-4 ms-sm-0 flex-shrink-1">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img :src="clients.url" alt="hugenerd" width="30" height="30"
+                                    class="rounded-circle">
+                                <span class="d-none d-sm-inline mx-1" v-cloak >{{clients.firstName}} {{clients.lastName}}</span>
+                            </a>
+                            <small class="d-none d-sm-inline mx-1 fw-lighter" v-cloak >{{clients.email}}</small>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="myprofile.html">Mi perfil</a></li>                                
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" @click="logout">Salir</a></li>
+                            </ul>
+                        </div>
+                        <ul id="menu"
+                            class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start">
+                            <li class="nav-item">
+                                <a href="home.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Inicio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="accounts.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-archive"></i><span
+                                        class="ms-1 d-none d-sm-inline">Mis cuentas</span> </a>
+                            </li> 
+                            <li class="dropdown">
+                                <a href="transfer.html" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fs-5 bi-cash-coin"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transferencias</span>
+                                </a>
+                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                                    <li><a class="dropdown-item" href="schedule.html">Agenda de cuentas</a></li>
+                                    <li><a class="dropdown-item" href="transfer.html">Transferencias</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="loan-application.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-currency-dollar"></i><span
+                                        class="ms-1 d-none d-sm-inline">Préstamos</span></a>
+                            </li>                                                         
+                            <li>
+                                <a href="cards.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-credit-card-2-back-fill"></i><span
+                                        class="ms-1 d-none d-sm-inline">Tarjetas</span> </a>
+                            </li>                            
+                        </ul>
+                        <li v-if="clients.role == 'ADMIN'">
+                            <a id="adminPanl" href="/manager.html" class="nav-link px-sm-0 px-2">
+                                <i class="bi bi-person-lines-fill"></i><span
+                                    class="ms-1 d-none d-sm-inline">Admin Panel</span> </a>
+                        </li>
+                        <li>
+                            <a href="help.html" class="nav-link px-sm-0 px-2 active">
+                                <i class="fs-5 bi-question-circle"></i><span
+                                    class="ms-1 d-none d-sm-inline">Ayuda</span> </a>
+                        </li>
+
+                        <div class="py-4 footerSidebar d-flex flex-column">
+                            <small>__________________________</small>
+                            <small class="pt-3">Copyright © | MBB Bank</small>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="main-container" class="col d-flex flex-column h-sm-100">
+                    <div>
+                        <div id="header" class="row ">
+                            <div class="d-flex row">
+                                <h1>Ayuda</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row overflow-auto  h-100">
+                        <main class="d-flex flex-column">
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <div class="helpMain col-12 col-lg-9 d-flex flex-column align-items-center">
+                                    <div>
+                                        <h2 class="text-center fs-2"><span>¿Necesitas ayuda?</span></h2>
+                                        <h3 class="mt-4">Si queres consultar sobre un tema en particular podes:</h3>
+                                        <h4 class="mt-4"><span><i class="bi bi-check-lg fs-5"></i></span> Consultar con
+                                            nuestro asistente virtual
+                                        </h4>
+                                        <h4><span><i class="bi bi-check-lg fs-5"></i></span> Escribirnos por nuestras redes</h4>
+                                        <span class="px-3"><i class="bi bi-instagram fs-5"></i></span>
+                                        <span class="px-3"><i class="bi bi-twitter fs-5"></i></span>
+                                        <span class="px-3"><i class="bi bi-facebook fs-5"></i></span>
+                                        <h4><span><i class="bi bi-check-lg fs-5"></i></span> Llamar al
+                                            <b>0800-183-5587</b></h4>
+                                        <h4><span><i class="bi bi-check-lg fs-5"></i></span> Envianos tu consulta por
+                                            nuestro formulario</h4>
+                                    </div>
+                                </div>
+                                <div class="helpMain col-12 col-lg-9 d-flex flex-column align-items-center">                                    
+                                    <form @submit.prevent="sendMailForm" class="formHelp mt-5 mb-5">
+                                        <label for="name" class="form-label-top-help">Nombre
+                                            completo</label>
+                                        <div class="fHelp px-1">
+                                            <div class="inputGradient d-flex align-items-center">                                                
+                                                <input v-model="nameForm" id="name" type="text" name="name" class="form-control">
+                                            </div>
+                                        </div>
+                                        <label for="mail" class="form-label-top-help  mt-4 ">Correo
+                                            electrónico</label>
+                                        <div class="fHelp px-1">                                            
+                                            <div class="inputGradient d-flex align-items-center">                                                
+                                                <input v-model="mailForm" id="mail" type="email" name="mail" class="form-control">
+                                            </div>
+                                        </div>
+                                        <label for="subject" class="form-label-top-help mt-4">Asunto</label>
+                                        <div class="fHelp  px-1">                                           
+                                            <div class="inputGradient d-flex align-items-center">                                                
+                                                <input v-model="subjectForm" id="subject" type="text" name="subject"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <label for="body" class="form-label-top-help mt-4 ">Mensaje</label>
+                                        <div class="fHelp px-1">
+                                            <div class="inputGradient d-flex align-items-center">                                                
+                                                <textarea v-model="bodyForm" id="body" name="body" type="text"
+                                                    class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-3 viewAccount"
+                                            value="register">Enviar consulta </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SPINNER -->
+        <div ref="spinnerContainer" class="spinnerContainer">
+            <div class="spinnerDiv">
+                <div class="sk-circle">
+                    <div class="sk-circle1 sk-child"></div>
+                    <div class="sk-circle2 sk-child"></div>
+                    <div class="sk-circle3 sk-child"></div>
+                    <div class="sk-circle4 sk-child"></div>
+                    <div class="sk-circle5 sk-child"></div>
+                    <div class="sk-circle6 sk-child"></div>
+                    <div class="sk-circle7 sk-child"></div>
+                    <div class="sk-circle8 sk-child"></div>
+                    <div class="sk-circle9 sk-child"></div>
+                    <div class="sk-circle10 sk-child"></div>
+                    <div class="sk-circle11 sk-child"></div>
+                    <div class="sk-circle12 sk-child"></div>
+                    <small class="enviar">Enviando...</small>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    <!-- CHATBOT -->
+    <div id="appChat">
+        <!-- CHAT BAR BLOCK -->
+        <div class="chat-bar-collapsible">
+            <button v-show="!toggle" id="chat-button" type="button" @click="collapsibleF" class="btn-openChat"><i
+                    class="bi bi-chat-dots-fill"></i>
+            </button>
+
+            <div v-if="toggle" class="content">
+                <div class="collapsible" type="button" @click="collapsibleF">
+                    Asistencia virtual
+                    <button> <i class="bi bi-x-circle-fill"></i> </button>
+                </div>
+                <div class="full-chat-block">
+                    <!-- Message Container -->
+                    <div class="outer-container">
+                        <div class="chat-container">
+                            <!-- Messages -->
+                            <div id="chatbox">
+                                <h5 id="chat-timestamp" v-cloak><span> {{time}}</span></h5>
+                                <p v-if="!toggle" id="botStarterMessage" class="botText"><span>Loading...</span></p>
+                                <div v-else="toggle">
+                                    <p id="botStarterMessage" class="botText"><span>Hola! soy tu asistente virtual de
+                                            MBB Bank.</span></p>
+                                    <p id="botStarterMessage" class="botText"><span>¿Con qué puedo ayudarte? 😉</span>
+                                    </p>
+                                    <div class="botText btn-chat btn-start">
+                                        <span class="btn-cs">
+                                            <button @click="optionsPromo">Contactos</button>
+                                            <button @click="optionsProblem">Tengo un problema</button>
+                                            <button @click="">Consulta de saldo</button>
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-show="btnPromo">
+                                        <span>
+                                            <p>Podes ver tus promociones disponibles <a href="#">en esta sección</a></p>
+                                        </span>
+                                    </div>
+
+
+                                    <div class="botText btn-chat btn-middle" v-show="btnProblem">
+                                        <span>
+                                            <p>¿En cuál de los siguientes temas puedo ayudarte?</p>
+                                            <button @click="enviosYRec">Envío y recepción de dinero</button>
+                                            <button @click="mails">No me llegan los mails </button>
+                                            <!-- <button @click="celular">Perdí/me robaron el celular </button> -->
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-show="envioYRec">
+                                        <span class="response">
+                                            <p><b>¡La operación debería verse reflejada en minutos!</b></p>
+                                            <p> Si realizaste un envío de dinero o te enviaron dinero y el resultado fue
+                                                exitoso, suele verse reflejado en las cuentas de inmediato. <b> En
+                                                    ocasiones aisladas esta operación puede tardar algunos minutos,
+                                                    debido a problemas de conexión entre los bancos o que las redes
+                                                    estén saturadas.</b></p>
+                                            <p>Si el problema persiste puedes llamar al <b>0800-183-5587</b></p>
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-show="mail">
+                                        <span class="response">
+                                            <p>Vas a poder ver y/o cambiar tu mail ingresando a <b>"Mi Perfil"</b>
+                                                haciendo click en tu nombre en la barra lateral izquierda. Para poder
+                                                modificarlo, hace click en el boton <b>"Editar"</b> a la derecha de tu
+                                                mail.</p>
+                                        </span>
+                                    </div>
+
+                                    <div class="botText btn-chat btn-middle" v-show="btnCons">
+                                        <span>
+                                            <p>Te puedo ayudar con los siguientes temas sobre ""</p>
+                                            <button> Consulta </button>
+                                            <button> Consulta </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="chat-bar-bottom" >
+                                    <p></p>
+                                </div>
+                                <div class="chat-bar-input-block btn-chat">
+                                    <button @click="cleanChat" v-if="btnPromo || btnProblem || envioYRec|| mail">
+                                        Volver al inicio
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./scripts/chat.js"></script>
+    <script src="./scripts/main.js"></script>
+
+
+</body>
+
+</html>

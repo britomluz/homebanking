@@ -1,0 +1,357 @@
+/* *::before,
+*::after{
+  box-sizing: border-box;
+} */
+*{
+  user-select: none;
+}
+:root{
+  --main-color-primary1: #9e005d!important;
+  --main-color-primary2: #ffe9c7!important;
+  --main-color-primary4: #12c2b0!important;
+  --main-color-primary3: #ffaf34!important;
+  --main-color-secondary1: #68003c!important;
+  --main-color-secondary2: rgb(209, 209, 209);
+  --main-color-secondary3: rgb(243, 238, 233);
+
+  --Titanium1: #ff22a6!important;
+    --Titanium2: #66003b!important;
+    --Titanium3: #9e005d!important;
+    --Titanium4: #e02696!important;
+    --Titanium5: #ff0099!important;
+    
+
+    --Oro1: rgba(250,242,144)!important;
+    --Oro2: rgba(200,150,41)!important;    
+    --Oro3: rgba(96,53,18)!important;
+        
+    --Silver1: #f6f9fc!important;
+    --Silver2: rgba(175, 175, 175)!important;
+    --Silver3: rgba(63, 63, 63)!important;
+}
+
+/*FORM START*/
+/*global settings*/
+/* .form  */
+.input-groupF input{
+  display: none;
+} 
+
+/* .form  */
+.input-groupF input:checked ~ label{  
+  border: 2px solid var(--main-color-primary1);   
+  background: white;  
+  color: var(--main-color-primary1);  
+  box-shadow: none;
+  box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--main-color-primary1);
+}
+/* .form  */
+.input-groupF input:checked ~ label i{  
+  color: var(--main-color-primary1);
+}
+/* .form  */
+.input-groupF input:checked ~ .labelColor{  
+  box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--main-color-primary1);
+}
+.width-50{
+  width: 50%;
+}
+.ml-auto{
+  margin-left: auto;
+}
+.formCard span,
+.formCardLoan span{
+  color: var(--main-color-primary4);
+} 
+.formCard b,
+.formCardLoan b{
+  color: var(--main-color-primary4);
+}
+/*progress bar start*/
+.progressBar{
+  position: relative;
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  margin: 60px 0px 40px 0px;
+  counter-reset: step;  
+}
+ .progressBar::before, .progress{
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  width: 100%;    
+  background: var(--main-color-primary1); 
+} 
+.progress {
+  
+  width: 0;
+  transition: 0.3s;
+}
+.progress-step{  
+  width: 2.7rem;
+  height: 2.7rem;  
+  border: 3px solid var(--main-color-primary1); 
+  background: white;
+  border-radius: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--main-color-primary1);
+  transition: 1s;
+}
+.progress-step::before{  
+  font-size: 20px;
+  font-weight: bolder;
+  counter-increment: step;
+  content: counter(step);
+}
+ /* .progress-step::after{
+  content: attr(data-title);
+  position: absolute;
+  top: calc(100% - 4.4rem);
+  font-size: 0.90rem;  
+}  */
+.progress-step-active{
+  background: var(--main-color-primary4);
+  border: 3px solid var(--main-color-primary4);  
+  color: white!important;  
+  /* transition: 1s;  */
+}
+
+/*progress bar ends*/
+
+/*steps form*/
+
+
+/*form settings*/
+.formCard{  
+  min-height: 720px;  
+  background: white;
+  border-radius: 10px;
+  border: none;
+  box-shadow: -5px 5px 10px rgb(212, 203, 195); 
+  position: relative;
+  /* border: 3px solid var(--main-color-primary4);  */
+    
+}
+.formCardLoan{  
+  min-height: 720px; 
+  background: white;
+  border-radius: 10px;
+  border: none;
+  box-shadow: -5px 5px 10px rgb(212, 203, 195); 
+  position: relative;
+  /* border: 3px solid var(--main-color-primary4);      */
+}
+.form{
+  width: 100%;  
+  min-height: 500px;  
+  margin: 0 auto;
+  /* border: 1px solid var(--main-color-primary4);   */
+  border-radius: 20px;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: stretch;
+  
+}
+.form-step{
+  display: none!important; 
+  justify-content: space-between;
+  align-items: stretch;
+  height: 500px; 
+  
+}
+ 
+.form-step-active{
+  display: block!important;
+  
+} 
+.input-groupF label{  
+  padding: 30px 0px;    
+  background: linear-gradient(to top right, #d1037b, var(--main-color-primary4));
+  color: white;
+  border-radius: 20px; 
+  cursor: pointer;    
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-size: 18px; 
+  box-shadow: -5px 5px 10px rgb(212, 203, 195); 
+}
+.input-groupF label i{
+  font-size: 40px;  
+  color: white;
+}
+.input-groupF label:hover{  
+  /* border: 2px solid var(--main-color-primary1);     */
+  box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--main-color-primary1);
+}
+.transfer label{
+  /* width: 90%; */
+  padding: 10px 15px;
+  flex-direction: row;  
+  text-align: start;  
+  justify-content: start;  
+}
+.transfer label i {
+  margin-right: 10px;
+  font-size: 30px;
+}
+.transfer input{
+  display: none;
+}
+
+/*SCHEDULE START*/
+.schedule label{
+  /* width: 90%; */
+  padding: 10px 15px;
+  flex-direction: row;  
+  text-align: start;  
+  justify-content: start;  
+  font-size: 15px;
+  border-radius: 10px;
+  margin: 10px;
+}
+.schedule label i {
+  margin-right: 15px;
+  font-size: 12px;
+}
+.scheduleTitle{
+  font-size: 30px;
+}
+.scheduleTitle span{
+  color: var(--main-color-primary4);
+  font-size: 35px;
+  font-weight: bolder;
+}
+.contactT{
+  height: 300px;
+}
+.table-fav i{
+  color: var(--main-color-primary1);
+  font-size: 20px;
+
+}
+
+.btn{
+  width: 90%;
+  height: calc(100% + 5px);
+  border: none;
+  background: var(--main-color-primary4);;
+  margin-top: 20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: 0.5s ease;
+  border-radius: 25px;
+  box-shadow: 0px 5px 8px rgb(190, 178, 168)!important; 
+
+}
+
+.btn:hover{
+  background: var(--main-color-primary1);
+  color: white;
+}
+.btn-confirm{
+  background: linear-gradient(to top right, #d1037b, var(--main-color-primary4));
+}
+.btn-next{  
+  font-size: 12px;
+}
+.btn-prev{
+  margin-right: 8px;
+}
+.btn-group{
+  width: 100%;
+  /* height: 15px; */
+  /* margin: 45px 0; */
+  display: flex;
+  position: relative; 
+}
+
+#silverL{
+  background: linear-gradient(-135deg, var(--Silver3), var(--Silver2), var(--Silver1), var(--Silver2), var(--Silver3));
+  border: none;
+  color: white;  
+  text-shadow: -3px 3px 8px black;
+}
+#goldL{
+  background: linear-gradient(-135deg, var(--Oro3), var(--Oro2), var(--Oro1), var(--Oro2), var(--Oro3));    
+  border: none;
+  color: white;
+  text-shadow: -3px 3px 8px black;
+}
+#titaniumL{
+  background: linear-gradient(-135deg, var(--Titanium2), var(--Titanium3), var(--Titanium1), var(--Titanium3), var(--Titanium2));    
+  border: none;
+  color: white;
+  text-shadow: -3px 3px 8px black;
+}
+.inputGradientDos select{
+  background: linear-gradient(to top right, #d1037b, var(--main-color-primary4));
+  width: 90%; 
+  border-radius: 25px;
+  padding: 10px 20px;
+  outline: 0; 
+  border: none;
+  box-shadow: none!important;  
+  color: white;
+  font-size: 18px; 
+  /* appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none; */
+}
+.inputGradientDos option{
+  color: var(--main-color-secondary1);    
+}
+.inputTransfer{
+  width: 90%;    
+    background: transparent;
+    border-radius: 30px;
+    padding: 5px 5px;
+    background: linear-gradient(to top right, #d1037b, var(--main-color-primary4));
+    background-clip: padding-box;
+    box-shadow: rgba(25, 35, 46, 0.431) 0px 20px 20px -10px; 
+}
+/*FORM END*/
+
+/*FORM SCHEDULE*/
+.contactSchedule{      
+  background: white;
+  border-radius: 20px; 
+  box-shadow: -5px 5px 10px rgb(212, 203, 195);     
+}
+.formSchedule{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  /* border: 1px solid var(--main-color-primary1); */
+  background: whitesmoke;
+  border-radius: 20px;
+  height: 100%;  
+  padding: 1.5rem;   
+}
+.btnFav button{
+  background: none;
+  border: none;
+}
+
+@media screen and (max-width:767px){
+
+  .progressBar{
+    width: 300px;
+  }
+
+}

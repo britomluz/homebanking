@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homebanking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="icon" href="./assets/homebanking2.png" type="image/png" />
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="./assets/homebanking2.png" alt="" width="50" height="50">
+                    <span>MBB Bank</span>
+                </a>
+            </div>
+        </nav>
+        <header>
+            <div>
+                <h1>Panel de Cliente</h1>
+            </div>
+        </header>
+
+        <div class="container" v-cloak>
+
+            <div class="mb-5">
+                <a href="manager.html" class="miCuenta"> <i class="bi bi-arrow-left"> </i> Volver</a>
+            </div>
+            <div class="row d-flex flex-wrap Cpanel justify-content-center align-items-center" id="main">
+                <div class="row d-flex flex-wrap justify-content-center divGrey">
+                    <h2 class="mt-3">Cliente Nº {{client.id}}</h2>
+                    <div class="col-12 col-xl-6" class="">
+                        <div class="">
+                            <!-- <h3><i class="bi bi-person-badge-fill"> </i> Datos personales <button type="button"
+                                    class="viewAccountG"><i class="bi bi-pencil"> </i></button></h3> -->
+                            <h3><i class="bi bi-person-badge-fill"> </i> Datos personales</h3>
+                            <p class="fs-5 mb-0">Nombre y Apellido: </p>
+                            <h4>{{client.firstName}} {{client.lastName}}</h4>
+                            <p class="fs-5 mb-0">Email:</p>
+                            <h4>{{client.email}}</h4>
+                            <p class="fs-5 mb-0">Rol de usuario: </p>
+                            <h4>{{client.role}}</h4>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-6 mb-5">
+                        <div class="">
+                            <h3> <i class="bi bi-card-heading"> </i> Información del cliente</h3>
+                            <p class="fs-5 mb-0">Cuentas: </p>
+                            <small class="text-danger" v-if="accounts.length === 0"> No tiene tarjetas aún.</small>
+                            <h4 v-for="account in accounts"> {{account.number}} - {{account.type}}
+                                <form @submit.prevent="deleteAccClient" class="d-inline">
+                                    <button type="submit" :value="account.number" class="viewAccountG">
+                                        <i class="bi bi-trash"> </i>
+                                    </button>
+                                </form>
+                            </h4>
+                            <div v-if="errorA" id="advertencia"
+                                class="d-flex align-items-center py-2" v-cloak>     
+                                <i class="bi bi-info-circle-fill text-danger"> </i>                           
+                                <small class="text-start text-danger px-2"> {{msg_delAccount}}</small>
+                            </div>
+                            <p class="fs-5 mb-0">Tarjetas: </p>
+                            <h4 v-for="card in cards"> {{card.type}} {{card.color}} - Vec: {{card.thruDate}} </h4>
+                            <small class="text-danger" v-if="cards.length === 0"> No tiene tarjetas aún.</small>
+                            <p class="fs-5 mb-0">Préstamos: </p>
+                            <h4 v-for="loan in loans">Préstamo {{loan.name}} - ${{loan.amount}}</h4>
+                            <small class="text-danger" v-if="loans.length === 0"> No tiene préstamos aún.</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+
+        </div>
+        
+    </div>
+    <footer class="mb-auto">
+        <div>
+            <p>Copyright © | MBB Bank </p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./manager.js"></script>
+</body>
+
+</html>

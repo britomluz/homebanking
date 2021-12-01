@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./style/stylesfinal.css">
+    <link rel="icon" href="./assets/homebanking2.png" type="image/png" />
+    <title>Tarjetas | MBB Bank</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div class="container-fluid overflow-hidden">
+            <div class="row vh-100 overflow-auto">
+                <nav class="navbar" id="navbar-account">
+                    <div class="container-account">
+                        <a class="navbar-brand-account" href="#">
+                            <img src="./assets/homebanking2.png" alt="" width="50" height="50">
+                            <span>MBB</span>
+                        </a>
+                    </div>
+                </nav>
+                <div class="col-12 col-sm-3 col-xl-2 px-0 d-flex sticky-top">
+                    <div id="sidebar"
+                        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-4 pt-3">
+                        <div id="sidebar-perfil" class="dropdown py-sm-4 ms-sm-0 flex-shrink-1">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img :src="clients.url" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                                <span class="d-none d-sm-inline mx-1" v-cloak>{{clients.firstName}}
+                                    {{clients.lastName}}</span>
+                            </a>
+                            <small class="d-none d-sm-inline mx-1 fw-lighter" v-cloak>{{clients.email}}</small>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="myprofile.html">Mi perfil</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" @click="logout">Salir</a></li>
+                            </ul>
+                        </div>
+                        <ul id="menu"
+                            class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start">
+                            <li class="nav-item">
+                                <a href="home.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Inicio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="accounts.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-archive"></i><span class="ms-1 d-none d-sm-inline">Mis
+                                        cuentas</span> </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="transfer.html" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fs-5 bi-cash-coin"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transferencias</span>
+                                </a>
+                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                                    <li><a class="dropdown-item" href="schedule.html">Agenda de cuentas</a></li>
+                                    <li><a class="dropdown-item" href="transfer.html">Transferencias</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="loan-application.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-currency-dollar"></i><span
+                                        class="ms-1 d-none d-sm-inline">Préstamos</span></a>
+                            </li>
+                            <li>
+                                <a href="cards.html" class="nav-link px-sm-0 px-2 active">
+                                    <i class="bi bi-credit-card-2-back-fill"></i><span
+                                        class="ms-1 d-none d-sm-inline">Tarjetas</span> </a>
+                            </li>
+                        </ul>
+                        <li v-if="clients.role == 'ADMIN'">
+                            <a id="adminPanl" href="/manager.html" class="nav-link px-sm-0 px-2">
+                                <i class="bi bi-person-lines-fill"></i><span
+                                    class="ms-1 d-none d-sm-inline">Admin Panel</span> </a>
+                        </li>
+                        <li>
+                            <a href="help.html" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-question-circle"></i><span
+                                    class="ms-1 d-none d-sm-inline">Ayuda</span> </a>
+                        </li>
+
+                        <div class="py-4 footerSidebar d-flex flex-column">
+                            <small>__________________________</small>
+                            <small class="pt-3">Copyright © | MBB Bank</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="main-container" class="col d-flex flex-column h-sm-100">
+                    <div>
+                        <div id="header" class="row ">
+                            <div class="d-flex row">
+                                <h1>Resumen de tarjeta</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row overflow-auto h-sm-100">
+                        <main class="d-flex flex-column align-items-center justify-content-center">
+                            <div class="viewGeneralDos col-12 col-lg-6 py-3" v-cloak>
+                                <div class="homeIzq col-12 col-lg-4" v-cloak>
+                                <div class="">
+                                    <div class="myAccountss d-flex flex-column align-items-center " v-cloak>
+                                        <div class="d-flex flex-wrap align-items-center justify-content-center">
+                                            <div class="py-2 px-4">
+                                                <p><b>Tipo:</b> {{card.type}}</p>
+                                                <p><b>Color: </b>{{card.color}}</p>
+                                                <!-- <p><b>Número de tarjeta:</b> {{card.number}}</p> -->
+                                                <p><b>Fecha de alta: </b>{{card.fromDate}}</p>
+                                                <p><b>Fecha de vencimiento: </b>{{card.thruDate}}</p>
+                                            </div>
+                                            <div class="myAcc d-flex flex-column align-items-center px-4"
+                                                v-if="card.type == 'CREDITO'">
+                                                <h5 class="card-title fs-1" v-if="card.color == 'SILVER'">$100.000</h5>
+                                                <h5 class="card-title fs-1" v-if="card.color == 'GOLD'">$180.000</h5>
+                                                <h5 class="card-title fs-1" v-if="card.color == 'TITANIUM'">Unlimited</h5>
+                                                <p class="card-text pt-2 fw-lighter">Saldo disponible</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="col-12 col-lg-9 accTransfers" v-cloak>
+
+                                <div class="myTransfers" v-cloak>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <!-- <small>Octubre</small> -->
+                                        <!-- <a type="button" class="btn d-flex justify-content-end text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                             Ver historial completo
+                                        </a> -->
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Fecha</th>
+                                                    <th scope="col">Descripción</th>
+                                                    <th scope="col">Monto</th>
+                                                    <th scope="col" v-if="card.type == 'CREDITO'">Cuotas</th>
+                                                    <th scope="col" v-if="card.type == 'CREDITO'">M/C</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="pay in pays">
+                                                    <td> {{pay.id}}</td>
+                                                    <td> {{(pay.date).slice(0,10)}}</td>
+                                                    <td> {{pay.description}}</td>
+                                                    <td> ${{pay.amount}}</td>
+                                                    <td v-if="card.type == 'CREDITO'"> {{pay.payments}}</td>
+                                                    <td v-if="card.type == 'CREDITO'"> ${{(pay.amountPayments).toFixed(2)}}</td>
+                                                </tr>
+                                                <tr v-if="pays.length === 0">
+                                                        <td colspan="6">
+                                                            <p class="text-danger text-center" v-cloak>No realizaste ninguna compra aún.</p>
+                                                        </td>
+                                                </tr>              
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <div v-if="pays.length > 0">
+                                        <p class="text-end"><b>Total: ${{totalPay}}</b> </p>
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" :id="card.id"
+                                                class="btn d-flex viewAccount align-items-end" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModl" @click="">Pagá tu resumen</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- modal pay resume -->
+                            <div class="modal fade modalPayResume" id="exampleModl" aria-hidden="true"
+                                aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <p class="modal-title" id="exampleModalToggleLabel">Pago de resumen de
+                                                tarjeta</p>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div
+                                            class="modal-body d-flex flex-column align-items-center justify-content-center">
+                                            <div
+                                                class="deleteCard d-flex flex-column align-items-center justify-content-center">
+                                                <h5>¿Con cuál cuenta quieres pagar?</h5>
+                                                <div
+                                                    class="inputGradientDos pt-3 d-flex flex-column align-items-center justify-content-center">
+                                                    <select class="w-100" v-model="numberAccount" name="account">
+                                                        <option value="">Selecciona una cuenta</option>
+                                                        <option v-for="acc in accounts" :value="acc.number">
+                                                            {{acc.number}} - ${{(acc.balance).toFixed(2)}} </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn viewAccount px-2" data-bs-target="#modalPayResumeDos"
+                                                data-bs-toggle="modal">Siguiente</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade modalPayResumeDos" id="modalPayResumeDos" aria-hidden="true"
+                                aria-labelledby="exampleModalToggleLabel2" tabindex="-1" v-cloak>
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <p class="modal-title" id="exampleModalToggleLabel">Pago de resumen de
+                                                tarjeta</p>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div
+                                            class="modal-body d-flex flex-column align-items-center justify-content-center">
+                                            <i class="bi bi-currency-dollar"></i>
+                                            <h3 class="pt-3">Vas a pagar un total de <b class="fs-3">${{totalPay}}</b>
+                                            </h3>
+                                            <h5 class="pt-3 text-end">¿Quieres confirmar el pago?</h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn viewAccount  px-4" @click="payResume(card)">Si</button>
+                                            <button class="btn sendMoney px-4" data-bs-dismiss="modal"
+                                                data-bs-toggle="modal">No</button>
+                                            <button class="btn sendMoney px-4" data-bs-target="#exampleModal"
+                                                data-bs-toggle="modal">Volver</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./scripts/cards.js"></script>
+
+</body>
+
+</html>

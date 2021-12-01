@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./style/stylesfinal.css">
+    <link rel="stylesheet" href="./style/chat.css">
+    <link rel="icon" href="./assets/homebanking2.png" type="image/png" />
+    <title>Inicio | MBB Bank</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="container-fluid overflow-hidden">
+            <div class="row vh-100 overflow-auto">
+                <nav class="navbar" id="navbar-account">
+                    <div class="container-account">
+                        <a class="navbar-brand-account" href="#">
+                            <img src="./assets/homebanking2.png" alt="" width="50" height="50">
+                            <span>MBB Bank</span>
+                        </a>
+                    </div>
+                </nav>
+                <div class="col-12 col-sm-3 col-xl-2 px-0 d-flex sticky-top">
+                    <div id="sidebar"
+                        class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-4 pt-3">
+                        <div id="sidebar-perfil" class="dropdown py-sm-4 ms-sm-0 flex-shrink-1">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                                id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img :src="clients.url" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                                <span class="d-none d-sm-inline mx-1" v-cloak>{{clients.firstName}}
+                                    {{clients.lastName}}</span>
+                            </a>
+                            <small class="d-none d-sm-inline mx-1 fw-lighter" v-cloak>{{clients.email}}</small>
+                            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                                <li><a class="dropdown-item" href="myprofile.html">Mi perfil</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#" @click="logout">Salir</a></li>
+                            </ul>
+                        </div>
+                        <ul id="menu"
+                            class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start">
+                            <li class="nav-item">
+                                <a href="home.html" class="nav-link px-sm-0 px-2  active">
+                                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Inicio</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="accounts.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-archive"></i><span class="ms-1 d-none d-sm-inline">Mis
+                                        cuentas</span> </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="transfer.html" class="nav-link dropdown-toggle px-sm-0 px-1" id="dropdown"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fs-5 bi-cash-coin"></i><span
+                                        class="ms-1 d-none d-sm-inline">Transferencias</span>
+                                </a>
+                                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdown">
+                                    <li><a class="dropdown-item" href="schedule.html">Agenda de cuentas</a></li>
+                                    <li><a class="dropdown-item" href="transfer.html">Transferencias</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="loan-application.html" class="nav-link px-sm-0 px-2">
+                                    <i class="fs-5 bi-currency-dollar"></i><span
+                                        class="ms-1 d-none d-sm-inline">Préstamos</span></a>
+                            </li>
+                            <li>
+                                <a href="cards.html" class="nav-link px-sm-0 px-2">
+                                    <i class="bi bi-credit-card-2-back-fill"></i><span
+                                        class="ms-1 d-none d-sm-inline">Tarjetas</span> </a>
+                            </li>
+                        </ul>
+                        <li v-if="clients.role == 'ADMIN'">
+                            <a id="adminPanl" href="/manager.html" class="nav-link px-sm-0 px-2">
+                                <i class="bi bi-person-lines-fill"></i><span
+                                    class="ms-1 d-none d-sm-inline">Admin Panel</span> </a>
+                        </li>
+                        <li>
+                            <a href="help.html" class="nav-link px-sm-0 px-2">
+                                <i class="fs-5 bi-question-circle"></i><span
+                                    class="ms-1 d-none d-sm-inline">Ayuda</span> </a>
+                        </li>
+
+                        <div class="py-4 footerSidebar d-flex flex-column">
+                            <small>__________________________</small>
+                            <small class="pt-3">Copyright © | MBB Bank</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="main-container" class="col d-flex flex-column h-sm-100">
+                    <div>
+                        <div id="header" class="row ">
+                            <div class="d-flex row">
+                                <h1>Inicio</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row overflow-auto  h-100">
+
+                        <main class="d-flex flex-column home">
+                            <h2 v-cloak class="text-center py-4 fs-2">¡Hola <b v-cloak>{{clients.firstName}}!</b></h2>
+                            <!-- <h3 class="text-center py-3 titleHome">Mejora el manejo de tus <span> finanzas</span></h3>                                 -->
+
+                            <div class="d-flex flex-wrap justify-content-around align-items-center">
+                                <!-- <h1>ASDSA</h1> -->
+
+                                <div class="cal d-flex">
+                                    <div class="containerDay">
+                                        <div class="dateNow">
+                                            <div>
+                                                <div class="dateDayName" v-cloak>{{weekdayNow}}</div>
+                                            </div>
+                                            <div class="">
+                                                <div class="dateDay" v-cloak>{{dayNow}}</div>
+                                            </div>
+                                            <div>
+                                                <div class="dateMonth mt-2" v-cloak>de {{monthNow}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="calendar">
+                                        <div class="month">
+                                            <i ref="prevArrow" @click="prevMonth"
+                                                class="bi bi-caret-left-fill prev"></i>
+                                            <div ref="ag" class="date">
+                                                <h1 v-cloak>{{monthTitle}}</h1>
+                                            </div>
+                                            <i ref="nextArrow" @click="nextMonth"
+                                                class="bi bi-caret-right-fill next"></i>
+                                        </div>
+                                        <div class="weekdays">
+                                            <div>Dom</div>
+                                            <div>Lun</div>
+                                            <div>Mar</div>
+                                            <div>Mie</div>
+                                            <div>Jue</div>
+                                            <div>Vie</div>
+                                            <div>Sab</div>
+                                        </div>
+                                        <div class="days" v-cloak>
+                                            <div v-for="day in prevDays" class="prev-date">
+                                                <div class="day">
+                                                    {{day}}
+                                                </div>
+                                            </div>
+                                            <div v-for="day in days">
+                                                <div class="day"
+                                                    :class="dayNow == day && month == monthNow ? 'today' : null">
+                                                    {{day}}
+                                                </div>
+                                            </div>
+                                            <div v-for="day in nextDays" class="prev-date">
+                                                <div class="day">
+                                                    {{day}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="homeInversions ">
+
+                                    <div class="myInversions d-flex flex-column ">
+                                        <!-- <h1 class="text-center">Inversiones</h1> -->
+                                        <div class="card">
+                                            <div class="card-header" v-cloak>
+                                                Cotización {{dolar.nombre}}
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="card-coin d-flex align-items-center justify-content-around">
+                                                    <div>
+                                                        <p>Compra <span v-cloak>${{dolar.compra}}</span> </p>
+                                                    </div>
+                                                    <div>
+                                                        <p>Venta <span v-cloak>${{dolar.venta}}</span> </p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <input type="number" class="sendMoney" v-model="calcDolar"
+                                                        placeholder="Cantidad a cotizar...">
+                                                    <button type="submit" class="viewAccount"
+                                                        @click="calculateDolar">Convertir</button>
+
+                                                    <p class="mt-2">Total dólares: <span v-cloak>
+                                                            {{quantityDolar}}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="viewGeneral" v-cloak>
+                                <div class="homeIzq col-12 col-xl-8" v-cloak>
+                                    <div class="homeMany" v-cloak>
+                                        <div
+                                            class="myAccounts d-flex flex-column align-items-center justify-content-center">
+                                            <div>
+                                                <h1 class="text-center fs-5">Mis cuentas</h1>
+                                                <div v-for="account in accounts"
+                                                    class="cardHome d-flex align-items-center" v-cloak>
+                                                    <div class="border d-flex justify-items-center align-items-center">
+                                                        <i class="bi bi-archive-fill text-center"></i>
+                                                    </div><span v-cloak>{{account.number}} | ${{(account.balance).toFixed(2)}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-auto">
+                                                <a href="accounts.html" class="btn btn-primary viewAccount"> Ver
+                                                    cuentas</a>
+                                            </div>
+
+                                        </div>
+                                        <div
+                                            class="myLoans d-flex flex-column align-items-center justify-content-center">
+                                            <div>
+                                                <h1 class="text-center fs-5">Mis Préstamos</h1>
+                                            </div>
+                                            <div v-if="loans.length > 0" v-cloak>
+                                                <div v-for="loan in loans" class="cardHome d-flex align-items-center">
+                                                    <div class="border d-flex justify-items-center align-items-center">
+                                                        <i class="bi bi-currency-dollar text-center"></i>
+                                                    </div><span v-cloak> Préstamo {{loan.name}}</span>
+                                                </div>
+                                            </div>
+                                            <div v-if="loans.length === 0" v-cloak>
+                                                <p class="px-3">
+                                                    <span class="pDesc" v-cloak>No tienes préstamos. Puedes solicitar
+                                                        uno <a href="cards.html">haciendo click aqui</a></span>
+                                                </p>
+                                            </div>
+                                            <div class="mt-auto">
+                                                <a href="accounts.html" class="btn btn-primary viewAccount">Ver
+                                                    préstamos</a>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="myCards d-flex flex-column align-items-center justify-content-center">
+                                            <div>
+                                                <h1 class="text-center fs-5">Mis Tarjetas</h1>
+                                            </div>
+                                            <div v-if="cards.length > 0" v-cloak>
+                                                <div v-for="card in cards" class="cardHome d-flex align-items-center">
+                                                    <div class="border d-flex justify-items-center align-items-center">
+                                                        <i class="bi bi-credit-card-2-back-fill text-center"></i>
+                                                    </div>
+                                                    <span v-cloak> Tarjeta de {{card.type}} {{card.color}}</span>
+                                                </div>
+                                            </div>
+                                            <div v-if="cards.length === 0" v-cloak>
+                                                <p class="px-3">
+                                                    <span class="pDesc" v-cloak>No tienes tarjetas aún. Solicita una
+                                                        tarjeta desde <a href="cards.html">tarjetas</a></span>
+                                                </p>
+                                            </div>
+                                            <div class="mt-auto">
+                                                <a href="cards.html" class="btn btn-primary viewAccount">Ver
+                                                    tarjetas</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="homeContacts" v-cloak>
+                                        <div class="myContacts d-flex flex-column align-items-center justify-content-center"
+                                            v-cloak>
+                                            <div>
+                                                <h1 class="text-center fs-5">Mi contactos favoritos</h1>
+                                            </div>
+                                            <div v-if="contacts.length > 0" class="d-flex row justify-content-center"
+                                                v-cloak>
+                                                <div v-for="contact in favs" class="myContact contactsFav">
+                                                    <form @submit.prevent="transferContact">
+
+                                                        <button type="submit" :value="contact.accountContact">
+                                                            <img src="../web/assets/contacts.png" width="50" alt="">
+                                                            <p v-cloak>{{contact.nameContact}}</p>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <!-- <div v-for="contact in favs"  class="myContact">
+                                                        <img src="../web/assets/contacts.png" width="65" alt="">
+                                                        <p v-cloak>{{contact.nameContact}}</p>   
+                                                </div>                                                 -->
+                                            </div>
+                                            <div v-if="contacts.length === 0" v-cloak>
+                                                <p class="px-3">
+                                                    <span class="pDesc">Aún no tienes contactos favoritos. Ve a <a
+                                                            href="schedule.html"> agenda de contactos</a> para agregar
+                                                        alguno.</span>
+
+                                                </p>
+                                            </div>
+                                            <div class="mt-auto">
+                                                <a href="schedule.html" class="btn btn-primary viewAccount"> Ver
+                                                    agenda</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="homeRight col-12 col-xl-4">
+                                    <div class="homeMovements d-flex align-items-start">
+                                        <div class="myMovements  d-flex flex-column align-items-center justify-content-start">
+                                            <div>
+                                                <h1 class="text-center fs-5">Mis Últimos Movimientos</h1>
+                                            </div>
+                                            <div>
+                                                <div v-if="movements.length > 0">
+                                                    <p v-for="movement in movements.slice(0,10)" class="px-3">
+                                                        <span class="pDate" v-cloak>{{movement.date.slice(0,5)}} -
+                                                            {{movement.date.slice(13,18)}}</span>
+                                                        &nbsp <span class="pDesc"
+                                                            v-cloak>{{movement.description}}</span>
+                                                    </p>
+                                                </div>
+                                                <div v-if="movements.length === 0">
+                                                    <p class="px-3">
+                                                        <span class="pDesc">No se registran movimientos aún.</span>
+                                                    </p>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </main>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+  
+        <!-- modal delete cards -->
+        <div class="modal fade modalDeleteCardOne" id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <p class="modal-title" id="exampleModalToggleLabel">Solicitud de baja de tarjeta</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+                    <div class="deleteCard d-flex flex-column align-items-center justify-content-center">
+                        <h5>¿Qué tarjeta quieres dar de baja?</h5>
+                        <div class="inputGradientDos pt-3 d-flex flex-column align-items-center justify-content-center">
+                            <select v-model="cardId" name="cards">
+                                <option value="">Selecciona una tarjeta</option>
+                                <option v-for="card in cards" :value="card.id">
+                                    Tarjeta de {{card.type}} {{card.color}} </option>                                
+                            </select>
+                        </div>                   
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                  <button class="btn viewAccount px-2" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Siguiente</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal fade modalDeleteCardTwo" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="exampleModalToggleLabel">Solicitud de baja de tarjeta</p>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+                    <i class="bi bi-question-circle"></i>
+                    <h3 class="pt-3">¿Estas seguro que quieres dar de baja tu tarjeta?</h3>                              
+                </div>
+                <div class="modal-footer">                       
+                  <button class="btn sendMoney px-4" @click="deleteCard">Si</button>
+                  <button class="btn viewAccount px-4" data-bs-dismiss="modal"  data-bs-toggle="modal">No</button>
+                  <button class="btn sendMoney px-4" data-bs-target="#exampleModal"  data-bs-toggle="modal">Volver</button>
+                </div>
+              </div>
+            </div>
+        </div> 
+    </div>
+
+    <!-- CHATBOT -->
+    <div id="appChat">
+        <!-- CHAT BAR BLOCK -->
+        <div class="chat-bar-collapsible">
+            <button v-if="!toggle" id="chat-button" type="button" @click="collapsibleF" class="btn-openChat"><i
+                    class="bi bi-chat-dots-fill"></i>
+            </button>
+
+            <div v-if="toggle" class="content">
+                <div class="collapsible" type="button" @click="collapsibleF">
+                    Asistencia virtual
+                    <button> <i class="bi bi-x-circle-fill"></i> </button>
+                </div>
+                <div class="full-chat-block">
+                    <!-- Message Container -->
+                    <div class="outer-container">
+                        <div class="chat-container">
+                            <!-- Messages -->
+                            <div id="chatbox">
+                                <h5 id="chat-timestamp" v-cloak><span> {{time}}</span></h5>
+                                <p v-if="!toggle" id="botStarterMessage" class="botText"><span>Loading...</span></p>
+                                <div v-else="toggle">
+                                    <p id="botStarterMessage" class="botText"><span>Hola! soy tu asistente virtual de
+                                            MBB Bank.</span></p>
+                                    <p id="botStarterMessage" class="botText"><span>¿Con qué puedo ayudarte? 😉</span>
+                                    </p>
+                                    <div class="botText btn-chat btn-start">
+                                        <span class="btn-cs">
+                                            <button @click="optionsPromo">Promociones</button>
+                                            <button @click="optionsProblem">Tengo un problema</button>
+                                            <button @click="optionsConsults">Consultas</button>
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-if="btnPromo">
+                                        <span>
+                                            <p>Podes ver tus promociones disponibles <a href="#">en esta sección</a></p>
+                                        </span>
+                                    </div>
+
+                                    <div class="botText btn-chat btn-middle" v-if="btnProblem">
+                                        <span>
+                                            <p>¿En cuál de los siguientes temas puedo ayudarte?</p>
+                                            <button @click="enviosYRec">Envío y recepción de dinero</button>
+                                            <button @click="mails">No me llegan los mails </button>
+                                            <!-- <button @click="celular">Perdí/me robaron el celular </button> -->
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-if="envioYRec">
+                                        <span class="response">
+                                            <p><b>¡La operación debería verse reflejada en minutos!</b></p>
+                                            <p> Si realizaste un envío de dinero o te enviaron dinero y el resultado fue
+                                                exitoso, suele verse reflejado en las cuentas de inmediato. <b> En
+                                                    ocasiones aisladas esta operación puede tardar algunos minutos,
+                                                    debido a problemas de conexión entre los bancos o que las redes
+                                                    estén saturadas.</b></p>
+                                            <p>Si el problema persiste puedes llamar al <b>0800-183-5587</b></p>
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-if="mail">
+                                        <span class="response">
+                                            <p>Vas a poder ver y/o cambiar tu mail ingresando a <b>"Mi Perfil"</b>
+                                                haciendo click en tu nombre en la barra lateral izquierda. Para poder
+                                                modificarlo, hace click en el boton <b>"Editar"</b> a la derecha de tu
+                                                mail.</p>
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-if="btnCons">
+                                        <span>
+                                            <p>Te puedo ayudar con los siguientes temas... </p>
+                                            <button @click="cardss">Quiero dar de baja mi tarjeta</button>
+                                            <button @click="loanss">Mi solicitud de préstamo fue rechazada </button>
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-if="cards">
+                                        <span class="response">
+                                            <p><b>Si tenes un problema con tu tarjeta podes enviarnos tu consulta desde
+                                                    la sección de <a href="help.html">ayuda</a> </b></p>
+                                            <p> Si aún así quieres dar de baja tu tarjeta puedes hacerlo haciendo click en el siguiente botón
+                                                <button type="button" class="btn viewAccount" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">dar de baja mi tarjeta</button></p>
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-if="loans">
+                                        <span class="response">
+                                            <p>Si tu solicitud de prestamo fue rechazada podras ver el motivo
+                                                detalladamente en la sección <b>"Mis movimientos"</b> del Inicio.</p>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="chat-bar-bottom">
+                                    <p></p>
+                                </div>
+                                <div class="chat-bar-input-block btn-chat">
+                                    <button @click="cleanChat" v-if="btnPromo || btnProblem || envioYRec|| mail">
+                                        Volver al inicio
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <!-- <div class="modal fade modalDeleteCardOne" id="exampleModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p class="modal-title" id="exampleModalToggleLabel">Solicitud de baja de tarjeta</p>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="deleteCard">
+                    <h5>¿Qué tarjeta quieres dar de baja?</h5>
+                    <div class="inputGradientDos pt-3">
+                        <select v-model="cardId" name="cuentas"
+                            id="" placeholder="">
+                            <option value="" selected>Selecciona una tarjeta</option>
+                            <option v-for="card in cards" :value="card.id">
+                                Tarjeta de {{card.type}} {{card.color}} </option>
+                            
+                        </select>
+                    </div>                   
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+              <button class="btn viewAccount px-2" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade modalDeleteCardTwo" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel2">Solicitud de baja de tarjeta</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+                <i class="bi bi-question-circle"></i>
+                <h3 class="pt-3">¿Estas seguro que quieres dar de baja tu tarjeta?</h3>                              
+            </div>
+            <div class="modal-footer">                       
+              <button class="btn sendMoney px-4" @click="deleteCard">Si</button>
+              <button class="btn viewAccount px-4" data-bs-dismiss="modal"  data-bs-toggle="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>       -->
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./scripts/chat.js"></script>
+    <script src="./scripts/main.js"></script>
+
+</body>
+
+</html>

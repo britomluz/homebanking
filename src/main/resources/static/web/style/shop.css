@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+:root{
+    --main-color-primary1: #a6e415!important;
+    --main-color-primary2: #7014bb!important;    
+    --main-color-primary3: #ffaf34!important;
+    --main-color-secondary1: #36065e!important;
+    --main-color-secondary2: rgb(209, 209, 209);
+    --main-color-secondary3: rgb(243, 238, 233);   
+}
+
+header{    
+    background: linear-gradient(to bottom, var(--main-color-primary2), var(--main-color-secondary1));    
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;    
+}
+footer{
+    background: linear-gradient(to bottom, var(--main-color-primary2), var(--main-color-secondary1));    
+    height: 100px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;  
+
+}
+nav{
+    background: yellowgreen;
+}
+nav span{
+    font-weight: bolder;
+    font-size: 30px;
+    color: var(--main-color-secondary1);
+}
+h1{
+    color: white;
+}
+h5{
+    color: var(--main-color-primary2);
+    font-size: 30px;
+}
+hr{    
+    color: var(--main-color-primary2);    
+}
+button{
+    padding: 5px 30px;
+    border: none;
+    background: #a6e415;
+    color: var(--main-color-secondary1);
+}
+button:hover{
+    background: var(--main-color-primary2);
+    color: white;
+}
+.cart{
+    color: #7014bb;
+}
+
+.modal-header{
+    background: #a6e415;
+}
+.payCard input{
+    padding: 5px 0px;
+}
+.btn-primary{
+    background: #a6e415!important;
+    color: var(--main-color-secondary1);
+    border: none;
+    
+}
+.btn-primary:focus{
+    box-shadow: none!important;
+}
+.btn-primary:hover{
+    background: var(--main-color-primary2)!important;
+    color: white;
+    
+    
+}
