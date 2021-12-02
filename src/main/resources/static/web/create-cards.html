@@ -161,22 +161,6 @@
                                                     </div>
                                                 </div>
                                                 <div ref="form2" class="form-step form2 d-flex flex-column justify-content-between">                                                    
-                                                    <div v-if="numAcc">
-                                                        <div>
-                                                            <h3>¿A qué cuenta quieres asociar tu tarjeta?</h3>
-                                                        </div>                                                    
-                                                        <div >
-                                                            <div class="inputGradientDos d-flex align-items-center pt-1">
-                                                                <select class="w-100"  v-model="numberAccount" name="account">
-                                                                    <option value="">Selecciona una cuenta</option>
-                                                                    <option v-for="acc in accounts" :value="acc.number">
-                                                                        {{acc.number}} </option>
-                                                                </select>
-                                                                <!-- @change="amountPayment()" -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
                                                     <div class="title mt-3">
                                                         <h3>¿De qué color quieres tu tarjeta?</h3>
                                                      </div>
@@ -200,10 +184,25 @@
                                                     </div>                                     
                                                 </div>
                                                 <div ref="form3" class="form-step form3 d-flex flex-column justify-content-between align-items-between">
-                                                    <div class="title">
+                                                    <div v-if="numAcc">
+                                                        <div>
+                                                            <h3>¿A qué cuenta quieres asociar tu tarjeta?</h3>
+                                                        </div>                                                    
+                                                        <div >
+                                                            <div class="inputGradientDos d-flex align-items-center pt-1">
+                                                                <select class="w-100"  v-model="numberAccount" name="account">
+                                                                    <option value="">Selecciona una cuenta</option>
+                                                                    <option v-for="acc in accounts" :value="acc.number">
+                                                                        {{acc.number}} </option>
+                                                                </select>
+                                                                <!-- @change="amountPayment()" -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="title mt-4 pt-2">
                                                         <h3>¡Confirma tu solicitud!</h3>
                                                     </div>
-                                                    <div class="mt-4 pt-5">
+                                                    <div class="mt-4">
                                                         <h4>Tu solicitud es: </h4>
                                                         <p v-if="type!=''">Tipo de tarjeta: <b>{{type}}</b></p>
                                                         <p v-else> Tipo de tarjeta: <span>Elige un un tipo de tarjeta</span></p>
@@ -211,7 +210,7 @@
                                                         <p v-else> Color de tarjeta: <span>Elige un color de tarjeta</span></p>
                                                         
                                                     </div>
-                                                    <div class="mt-5 pt-5">                                            
+                                                    <div class="mt-5">                                            
                                                         <h4>¿Quieres confirmar tu pedido?</h4>
                                                         <div class="btn-group">                                                
                                                             <a ref="back2" @click="backForms(this.$refs.back2, this.$refs.form2, this.$refs.form3, this.$refs.progressStep3)" class="btn btn-prev"><i class="bi bi-arrow-left"></i> Volver</a>

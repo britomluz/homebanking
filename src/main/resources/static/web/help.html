@@ -199,7 +199,7 @@
     <div id="appChat">
         <!-- CHAT BAR BLOCK -->
         <div class="chat-bar-collapsible">
-            <button v-show="!toggle" id="chat-button" type="button" @click="collapsibleF" class="btn-openChat"><i
+            <button v-if="!toggle" id="chat-button" type="button" @click="collapsibleF" class="btn-openChat"><i
                     class="bi bi-chat-dots-fill"></i>
             </button>
 
@@ -223,19 +223,18 @@
                                     </p>
                                     <div class="botText btn-chat btn-start">
                                         <span class="btn-cs">
-                                            <button @click="optionsPromo">Contactos</button>
+                                            <button @click="optionsPromo">Promociones</button>
                                             <button @click="optionsProblem">Tengo un problema</button>
-                                            <button @click="">Consulta de saldo</button>
+                                            <button @click="optionsConsults">Consultas</button>
                                         </span>
                                     </div>
-                                    <div class="botText btn-chat btn-middle" v-show="btnPromo">
+                                    <div class="botText btn-chat btn-middle" v-if="btnPromo">
                                         <span>
                                             <p>Podes ver tus promociones disponibles <a href="#">en esta sección</a></p>
                                         </span>
                                     </div>
 
-
-                                    <div class="botText btn-chat btn-middle" v-show="btnProblem">
+                                    <div class="botText btn-chat btn-middle" v-if="btnProblem">
                                         <span>
                                             <p>¿En cuál de los siguientes temas puedo ayudarte?</p>
                                             <button @click="enviosYRec">Envío y recepción de dinero</button>
@@ -243,7 +242,7 @@
                                             <!-- <button @click="celular">Perdí/me robaron el celular </button> -->
                                         </span>
                                     </div>
-                                    <div class="botText btn-chat btn-middle" v-show="envioYRec">
+                                    <div class="botText btn-chat btn-middle" v-if="envioYRec">
                                         <span class="response">
                                             <p><b>¡La operación debería verse reflejada en minutos!</b></p>
                                             <p> Si realizaste un envío de dinero o te enviaron dinero y el resultado fue
@@ -254,7 +253,7 @@
                                             <p>Si el problema persiste puedes llamar al <b>0800-183-5587</b></p>
                                         </span>
                                     </div>
-                                    <div class="botText btn-chat btn-middle" v-show="mail">
+                                    <div class="botText btn-chat btn-middle" v-if="mail">
                                         <span class="response">
                                             <p>Vas a poder ver y/o cambiar tu mail ingresando a <b>"Mi Perfil"</b>
                                                 haciendo click en tu nombre en la barra lateral izquierda. Para poder
@@ -262,16 +261,30 @@
                                                 mail.</p>
                                         </span>
                                     </div>
-
-                                    <div class="botText btn-chat btn-middle" v-show="btnCons">
+                                    <div class="botText btn-chat btn-middle" v-if="btnCons">
                                         <span>
-                                            <p>Te puedo ayudar con los siguientes temas sobre ""</p>
-                                            <button> Consulta </button>
-                                            <button> Consulta </button>
+                                            <p>Te puedo ayudar con los siguientes temas... </p>
+                                            <button @click="cardss">Quiero dar de baja mi tarjeta</button>
+                                            <button @click="loanss">Mi solicitud de préstamo fue rechazada </button>
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-if="cards">
+                                        <span class="response">
+                                            <p><b>Si tenes un problema con tu tarjeta podes enviarnos tu consulta desde
+                                                    la sección de <a href="help.html">ayuda</a> </b></p>
+                                            <p> Si aún así quieres dar de baja tu tarjeta puedes hacerlo haciendo click en el siguiente botón
+                                                <button type="button" class="btn viewAccount" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">dar de baja mi tarjeta</button></p>
+                                        </span>
+                                    </div>
+                                    <div class="botText btn-chat btn-middle" v-if="loans">
+                                        <span class="response">
+                                            <p>Si tu solicitud de prestamo fue rechazada podras ver el motivo
+                                                detalladamente en la sección <b>"Mis movimientos"</b> del Inicio.</p>
                                         </span>
                                     </div>
                                 </div>
-                                <div id="chat-bar-bottom" >
+                                <div id="chat-bar-bottom">
                                     <p></p>
                                 </div>
                                 <div class="chat-bar-input-block btn-chat">

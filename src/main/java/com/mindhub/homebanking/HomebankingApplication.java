@@ -36,6 +36,11 @@ public class HomebankingApplication {
 
 			Client melba = new Client("Melba", "Morel", "melba@mindhub.com", passwordEnconder.encode("melba123"), "https://www.marketingdirecto.com/wp-content/uploads/2020/03/dia-de-la-mujer-monica-moro.png", ClientType.ADMIN);
 			Client luz = new Client("Luz", "Brito","britomluz@gmail.com", passwordEnconder.encode("luz123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
+			Client felipe = new Client("Felipe", "Ruiz","felipr@gmail.com", passwordEnconder.encode("felipe123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
+			Client vanesa = new Client("Vanesa", "Cortes","vanecortes@gmail.com", passwordEnconder.encode("vanesa123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
+			Client diego = new Client("Diego", "de la Vega","deiegodelavega@gmail.com", passwordEnconder.encode("diego123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
+			Client luis = new Client("Luis", "Perez","luisp@gmail.com", passwordEnconder.encode("luisp123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
+
 
 
 			Account vin001 = new Account("VIN00000001", LocalDateTime.now().minusMonths(3).plusDays(9), AccountType.CAJADEAHORRO, 5000,melba);
@@ -43,6 +48,12 @@ public class HomebankingApplication {
 
 			Account vin003 = new Account("VIN00000003", LocalDateTime.now(), AccountType.CUENTACORRIENTE, 8000,luz);
 			Account vin004 = new Account("VIN00000004", LocalDateTime.now().plusDays(1), AccountType.CAJADEAHORRO, 5000,luz);
+
+			Account vin005 = new Account("TAD92365563", LocalDateTime.now(), AccountType.CUENTACORRIENTE, 8000, felipe);
+			Account vin006 = new Account("VIN23658548", LocalDateTime.now().plusDays(1), AccountType.CAJADEAHORRO, 5000,vanesa);
+			Account vin007 = new Account("FUC23658742", LocalDateTime.now(), AccountType.CUENTACORRIENTE, 8000,diego);
+			Account vin008 = new Account("CAB89638742", LocalDateTime.now().plusDays(1), AccountType.CAJADEAHORRO, 5000,luis);
+
 
 			Transaction transf0001 = new Transaction(TransactionType.CREDITO, 2000, "Bank Santander - De cuenta Nº VIN00000008", LocalDateTime.now().plusDays(1).minusYears(3));
 			Transaction transf0002 = new Transaction(TransactionType.DEBITO, 3000, "J. P. A. - A cuenta Nº VIN00000047", LocalDateTime.now().plusDays(3).minusYears(2));
