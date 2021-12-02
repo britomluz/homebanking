@@ -19,11 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class PDFGeneratorServiceImpl implements PDFGeneratorService {
@@ -65,10 +67,14 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
     private void writeTableData(PdfPTable table, List<AccountDTO> listAccounts) {
         PdfPCell cellDos = new PdfPCell();
         for (AccountDTO acc : listAccounts) {
+            Locale locale = new Locale("en", "US");
+            NumberFormat currency = NumberFormat.getCurrencyInstance(locale);
+            String amount = currency.format(acc.getBalance());
+
             table.addCell(String.valueOf(acc.getId()));
             table.addCell(String.valueOf(acc.getCreationDate()));
             table.addCell(acc.getNumber());
-            table.addCell(String.valueOf(acc.getBalance()));
+            table.addCell(amount);
         }
     }
 
@@ -337,13 +343,18 @@ public class PDFGeneratorServiceImpl implements PDFGeneratorService {
     }
 
     private void writeTableDataTransactions(PdfPTable table, List<Transaction> listTransactions) {
+
         PdfPCell cellDos = new PdfPCell();
         for (Transaction transfer : listTransactions) {
+            Locale locale = new Locale("en", "US");
+            NumberFormat currency = NumberFormat.getCurrencyInstance(locale);
+            String amount = currency.format(transfer.getAmount());
+
             table.addCell(String.valueOf(transfer.getId()));
             table.addCell(String.valueOf(transfer.getDate()));
             table.addCell(String.valueOf(transfer.getType()));
             table.addCell(transfer.getDescription());
-            table.addCell(String.valueOf(transfer.getAmount()));
+            table.addCell(amount);
 
         }
     }
