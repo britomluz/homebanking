@@ -42,6 +42,7 @@ public class PayController {
     @Autowired
     private MovementServiceImpl movementServiceImpl;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping("/clients/current/pays")
     public ResponseEntity<Object> transfer(Authentication authentication,
                                            @RequestParam String description,
