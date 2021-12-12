@@ -47,12 +47,15 @@ public class PayController {
                                            @RequestParam String description,
                                            @RequestParam String amount,
                                            @RequestParam String payments,
-                                           @RequestParam String cardNumber) {
+                                           @RequestParam String cardNumber,
+                                           @RequestParam String numberAccount) {
 
         Client client = clientServiceImpl.getByEmail(authentication.getName());
         Card card = cardServiceImpl.getByNumber(cardNumber);
         //Card card = cardServiceImpl.findByNumber(cardNumber);
         Account account = card.getAccount();
+
+        Account accountDest = accountServiceImpl.getByNumber(numberAccount);
 
         if (description.isEmpty() || amount.isEmpty() || payments.isEmpty() || cardNumber.isEmpty()) {
             return new ResponseEntity<>("Por favor, rellene todos los campos", HttpStatus.BAD_REQUEST);
@@ -96,6 +99,14 @@ public class PayController {
             double newBalance = account.getBalance() - amountt;
             account.setBalance(newBalance);
             accountServiceImpl.save(account);
+
+            Transaction newTransactionCred = new Transaction(TransactionType.CREDITO, amountt, description + "Credito de " + account.getNumber() , LocalDateTime.now());
+            transactionServiceImpl.save(newTransactionCred);
+            accountDest.addTransaction(newTransactionCred);
+
+            double newBalanceTwo = accountDest.getBalance() + amountt;
+            accountDest.setBalance(newBalanceTwo);
+            accountServiceImpl.save(accountDest);
         }
 
         if (card.getType().equals(CardType.CREDITO)){

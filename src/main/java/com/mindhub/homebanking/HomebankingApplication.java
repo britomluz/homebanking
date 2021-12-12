@@ -40,6 +40,7 @@ public class HomebankingApplication {
 			Client vanesa = new Client("Vanesa", "Cortes","vanecortes@gmail.com", passwordEnconder.encode("vanesa123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
 			Client diego = new Client("Diego", "de la Vega","deiegodelavega@gmail.com", passwordEnconder.encode("diego123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
 			Client luis = new Client("Luis", "Perez","luisp@gmail.com", passwordEnconder.encode("luisp123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
+			Client acquerello = new Client("Acquerello", "Restaurant","acquerelloMindhub@gmail.com", passwordEnconder.encode("acquerello123"),"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROXQAAlpugoyysL2by-ZDUVND2ojwYETCQsA&usqp=CAU", ClientType.CLIENT );
 
 
 
@@ -49,10 +50,15 @@ public class HomebankingApplication {
 			Account vin003 = new Account("VIN00000003", LocalDateTime.now(), AccountType.CUENTACORRIENTE, 8000,luz);
 			Account vin004 = new Account("VIN00000004", LocalDateTime.now().plusDays(1), AccountType.CAJADEAHORRO, 5000,luz);
 
+
 			Account vin005 = new Account("TAD92365563", LocalDateTime.now(), AccountType.CUENTACORRIENTE, 8000, felipe);
 			Account vin006 = new Account("VIN23658548", LocalDateTime.now().plusDays(1), AccountType.CAJADEAHORRO, 5000,vanesa);
 			Account vin007 = new Account("FUC23658742", LocalDateTime.now(), AccountType.CUENTACORRIENTE, 8000,diego);
 			Account vin008 = new Account("CAB89638742", LocalDateTime.now().plusDays(1), AccountType.CAJADEAHORRO, 5000,luis);
+
+			Account vin009 = new Account("VIN89632153", LocalDateTime.now().minusMonths(8), AccountType.CUENTACORRIENTE, 120000,acquerello);
+
+
 
 
 			Transaction transf0001 = new Transaction(TransactionType.CREDITO, 2000, "Bank Santander - De cuenta Nº VIN00000008", LocalDateTime.now().plusDays(1).minusYears(3));
@@ -155,12 +161,20 @@ public class HomebankingApplication {
 
 			clientRepository.save(melba);
 			clientRepository.save(luz);
+			clientRepository.save(acquerello);
 
 			accountRepository.save(vin001);
 			accountRepository.save(vin002);
 
 			accountRepository.save(vin003);
 			accountRepository.save(vin004);
+
+			accountRepository.save(vin005);
+			accountRepository.save(vin006);
+			accountRepository.save(vin007);
+			accountRepository.save(vin008);
+			accountRepository.save(vin009);
+
 
 			transactionRepository.save(transf0001);
 			transactionRepository.save(transf0002);
