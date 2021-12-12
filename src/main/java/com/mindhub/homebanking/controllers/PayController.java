@@ -18,8 +18,6 @@ import java.util.stream.Collectors;
 
 @Transactional
 @RestController
-@RequestMapping("/api")
-
 public class PayController {
 
 
@@ -43,7 +41,7 @@ public class PayController {
     private MovementServiceImpl movementServiceImpl;
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @PostMapping("/clients/current/pays")
+    @PostMapping("/api/clients/current/pays")
     public ResponseEntity<Object> transfer(Authentication authentication,
                                            @RequestParam String description,
                                            @RequestParam String amount,
@@ -153,7 +151,7 @@ public class PayController {
     }
 
     ///clients/current/pays
-    @PostMapping("/clients/current/card/pays")
+    @PostMapping("/api/clients/current/card/pays")
     public ResponseEntity<Object> transfer(Authentication authentication,
                                            @RequestParam String totalPay,
                                            @RequestParam String numberAccount,
@@ -200,7 +198,7 @@ public class PayController {
         return new ResponseEntity<Object>("Pago realizado con éxito", HttpStatus.OK);
     }
 
-    @PostMapping("/shop")
+    @PostMapping("/api/shop")
     public ResponseEntity<Object> shop(@RequestBody PayApplicationDTO payApplicationDTO){
 
         String number = payApplicationDTO.getNumber();
