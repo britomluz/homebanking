@@ -84,6 +84,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
 
+        http.cors();
 
         //disabling frameOptions so h2-console can be accessed
 

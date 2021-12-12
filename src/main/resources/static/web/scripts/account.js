@@ -203,6 +203,8 @@ const app = Vue.createApp({
                                                             .filter(transaction => transaction.date.slice(0,2).match(this.filterDay))
                                                             .filter(transaction => transaction.date.slice(3,5).match(this.filterMonth))
                                                             .filter(transaction => transaction.date.slice(6,10).match(this.filterYear)) 
+
+                                                            
                 
                     this.transfersPerPage = this.arrayFiltrado.slice(this.ini,this.end)                                     
                     
