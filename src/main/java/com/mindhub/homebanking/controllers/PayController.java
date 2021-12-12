@@ -1,9 +1,7 @@
 package com.mindhub.homebanking.controllers;
 
-import com.mindhub.homebanking.dtos.LoanApplicationDTO;
 import com.mindhub.homebanking.dtos.PayApplicationDTO;
 import com.mindhub.homebanking.models.*;
-import com.mindhub.homebanking.services.PayService;
 import com.mindhub.homebanking.services.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,7 +38,7 @@ public class PayController {
     @Autowired
     private MovementServiceImpl movementServiceImpl;
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "https://localhost:8080")
     @PostMapping("/api/clients/current/pays")
     public ResponseEntity<Object> transfer(Authentication authentication,
                                            @RequestParam String description,
